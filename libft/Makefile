@@ -46,17 +46,22 @@ SRCS =	ft_atoi.c \
 		ft_lstnew.c \
 		ft_lstsize.c
 
-OBJS = $(SRCS:.c=.o)
+OBJDIR = build
+OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
 #Execute when run make
 all: $(NAME)
 	
 $(NAME): $(OBJS)
-	ar -r $@ $?
+	$(AR) $@ $^
+
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 #Remove object files
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 
 #Remove object files and executable
 fclean: clean

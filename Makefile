@@ -6,7 +6,8 @@ SOURCES =	cub3d.c \
 			free.c \
 			map_checker.c \
 			raycaster.c
-OBJECTS = $(SOURCES:.c=.o)
+OBJDIR = build
+OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I. -I./ft_printf
 LIBXFLAGS = -lmlx -lXext -lX11
@@ -19,12 +20,13 @@ $(NAME): $(OBJECTS)
 	make --no-print-directory -C ./libft
 	$(CC) $(OBJECTS) $(CFLAGS) $(LIBXFLAGS) -o $(NAME) -L./libft -lft
 
-%.o:%.c
+$(OBJDIR)/%.o:%.c
+	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean --no-print-directory -C ./libft
-	@$(RM) -rf $(OBJECTS)
+	@$(RM) -rf $(OBJDIR)
 
 fclean: clean
 	make fclean --no-print-directory -C ./libft
