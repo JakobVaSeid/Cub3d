@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 14:30:25 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/06 16:15:39 by caigner           #+#    #+#             */
+/*   Updated: 2023/09/07 14:46:01 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*p;
+
+	i = 0;
+	p = (unsigned char *)s;
+	while (i < n)
+	{
+		p[i] = 0;
+		i++;
+	}
+}

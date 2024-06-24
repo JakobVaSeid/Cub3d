@@ -1,13 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 14:30:25 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/07 16:48:37 by caigner           #+#    #+#             */
+/*   Updated: 2023/09/12 15:46:54 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t			i;
+	size_t			total;
+	void			*ptr;
+	unsigned char	*byteptr;
+
+	i = 0;
+	total = nmemb * size;
+	if (nmemb != 0 && total / nmemb != size)
+		return (0);
+	ptr = malloc(total);
+	if (ptr != 0)
+	{
+		byteptr = (unsigned char *)ptr;
+		while (i < total)
+		{
+			byteptr[i] = 0;
+			i++;
+		}
+	}
+	return (ptr);
+}

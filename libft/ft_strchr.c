@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chris <chris@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 14:30:25 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/06 11:55:11 by caigner           #+#    #+#             */
+/*   Updated: 2023/09/10 11:52:00 by chris            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != 0)
+	{
+		if ((char)c == *s)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == 0)
+		return ((char *)s);
+	return (0);
+}

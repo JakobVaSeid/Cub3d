@@ -1,13 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 14:30:25 by caigner          ###   ########.fr       */
+/*   Created: 2023/10/30 19:42:29 by caigner           #+#    #+#             */
+/*   Updated: 2023/10/30 20:38:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+	t_list	*node;
+
+	i = 0;
+	node = lst;
+	while (node != 0)
+	{
+		i++;
+		node = node->next;
+	}
+	return (i);
+}
