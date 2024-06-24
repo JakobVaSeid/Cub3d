@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 14:30:57 by caigner          ###   ########.fr       */
+/*   Updated: 2024/06/24 18:34:05 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int	init_window(t_game *cub)
 
 int main  (int argc, char **argv)
 {
-	t_game cub3d;
+	t_game cub;
 	(void) **argv;
-	
-	if(!check_argv(argc, argv, &cub3d))
+
+	if(!check_argv(argc, argv, &cub))
 		return (1);
-	init_window(&cub3d);
+	init_window(&cub);
 	return (0);
 }
