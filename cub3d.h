@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/27 18:56:03 by caigner          ###   ########.fr       */
+/*   Updated: 2024/06/27 19:58:02 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ typedef struct s_raycast
 	int		step_y;
 	int		hit;
 	int		side; // 0 = NS, 1 = EW
+	int		line_height;
+	int		line_start;
+	int		line_end;
 } t_raycast;
 
 typedef struct s_player
@@ -75,6 +78,10 @@ typedef struct s_game
 # define FOV 60
 # define X 0
 # define Y 1
+# define HEIGHT 1
+# define FLOOR 0
+# define WALL 1
+# define DOOR 2
 
 ////////////////////////////////////////////
 /////////////////FUNCTIONS/////////////////

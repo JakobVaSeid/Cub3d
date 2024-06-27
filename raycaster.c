@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/06/27 19:26:30 by caigner          ###   ########.fr       */
+/*   Updated: 2024/06/27 19:58:32 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	calculate_dist(t_raycast *r, char **map)
 			r->pos_y += r->step_y;
 			r->side = Y;
 		}
-		if (map[r->pos_x][r->pos_y] == 1 || map[r->pos_x][r->pos_y] == 2)
+		if (map[r->pos_x][r->pos_y] == WALL || map[r->pos_x][r->pos_y] == DOOR)
 			r->hit = 1;
 	}
 	r->perp_wall_dist = 0;
@@ -77,6 +77,16 @@ void	calculate_dist(t_raycast *r, char **map)
 		r->perp_wall_dist = r->side_dist_y - r->delta_y;
 }
 
+void	calculate_height(t_raycast *r)
+{
+	r->line_height = (int)(HEIGHT / r->perp_wall_dist);
+	r->line_start = -r->line_height / 2 + HEIGHT / 2;
+	if (r->line_start < 0)
+		r->line_start = 0;
+	r->line_end = r->line_height / 2 + HEIGHT / 2;
+	if (r->line_end >= HEIGHT)
+		r->line_end = HEIGHT - 1;
+}
 //
 
 void	init_ray_struct(t_player *p, t_raycast *r)
