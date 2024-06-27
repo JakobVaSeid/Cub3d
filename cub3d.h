@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 14:41:41 by caigner          ###   ########.fr       */
+/*   Updated: 2024/06/27 18:56:03 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_raycast
 {
 	int		pos_x; // current x or y player
 	int		pos_y;
-	double	ray_x; // ray direction
-	double	ray_y;
+	double	dir_x; // ray direction
+	double	dir_y;
 	double	side_dist_x; // distance between player and next x or y
 	double	side_dist_y;
 	double	delta_x; // distance between two x or y
@@ -55,11 +55,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	dx;
-	double	dy;
-	double	angle;
-	double	dir;
-	double	fov;
+	double	dir_x;
+	double	dir_y;
 }	t_player;
 
 typedef struct s_game
@@ -76,6 +73,8 @@ typedef struct s_game
 //////////////////////////////////////////
 
 # define FOV 60
+# define X 0
+# define Y 1
 
 ////////////////////////////////////////////
 /////////////////FUNCTIONS/////////////////
