@@ -8,8 +8,9 @@ SOURCES =	cub3d.c \
 			raycaster.c
 OBJDIR = build
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
+DEP = $(OBJECTS:%.o=%.d)
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -I. -I./ft_printf
+CFLAGS = -Wall -Werror -Wextra -MMD -g -I. -I./ft_printf
 LIBXFLAGS = -lmlx -lXext -lX11
 AR = ar
 RM = rm
@@ -23,6 +24,8 @@ $(NAME): $(OBJECTS)
 $(OBJDIR)/%.o:%.c
 	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(DEP)
 
 clean:
 	make clean --no-print-directory -C ./libft

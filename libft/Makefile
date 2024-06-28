@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD
 AR = ar -rcs
 SRCS =	ft_atoi.c \
 		ft_bzero.c \
@@ -48,6 +48,7 @@ SRCS =	ft_atoi.c \
 
 OBJDIR = build
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+DEP = $(OBJECTS:%.o=%.d)
 
 #Execute when run make
 all: $(NAME)
@@ -58,6 +59,8 @@ $(NAME): $(OBJS)
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(DEP)
 
 #Remove object files
 clean:
