@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:37:48 by jseidere         ###   ########.fr       */
+/*   Created: 2023/09/05 16:25:27 by jseidere          #+#    #+#             */
+/*   Updated: 2023/09/20 16:12:38 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int main  (int argc, char **argv)
+int	ft_tolower(int c)
 {
-    t_game *game;
-    (void) **argv;
-    
-    game = NULL;
-
-    if(argc == 2)
-    {
-        init_map(game, argv[1]);
-        check_map(game, argv[1]);
-    }
-    else
-        perror("Wrong input!");
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }
+
+/*
+#include <stdio.h>
+int main ()
+{
+	printf("%c", ft_tolower('C'));
+}
+*/

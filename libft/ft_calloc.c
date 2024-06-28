@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:37:48 by jseidere         ###   ########.fr       */
+/*   Created: 2023/09/13 11:47:59 by marvin            #+#    #+#             */
+/*   Updated: 2023/09/20 15:19:59 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int main  (int argc, char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-    t_game *game;
-    (void) **argv;
-    
-    game = NULL;
+	void	*ptr;
 
-    if(argc == 2)
-    {
-        init_map(game, argv[1]);
-        check_map(game, argv[1]);
-    }
-    else
-        perror("Wrong input!");
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, (count * size));
+	return (ptr);
 }

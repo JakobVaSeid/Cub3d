@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:37:48 by jseidere         ###   ########.fr       */
+/*   Created: 2023/09/05 10:58:44 by jseidere          #+#    #+#             */
+/*   Updated: 2023/09/20 15:23:53 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int main  (int argc, char **argv)
+int	ft_isdigit(int i)
 {
-    t_game *game;
-    (void) **argv;
-    
-    game = NULL;
-
-    if(argc == 2)
-    {
-        init_map(game, argv[1]);
-        check_map(game, argv[1]);
-    }
-    else
-        perror("Wrong input!");
+	if (i >= '0' && i <= '9')
+		return (1);
+	else
+		return (0);
 }
+/* 
+#include <stdio.h>
+int main ()
+	{
+	printf("%i\n",ft_isdigit('1'));
+	printf("%i", ft_isdigit('A'));
+	} */

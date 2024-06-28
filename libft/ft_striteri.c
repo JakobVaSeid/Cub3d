@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:37:48 by jseidere         ###   ########.fr       */
+/*   Created: 2023/09/21 11:37:05 by jseidere          #+#    #+#             */
+/*   Updated: 2023/09/21 11:50:38 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int main  (int argc, char **argv)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-    t_game *game;
-    (void) **argv;
-    
-    game = NULL;
+	size_t			strlen;
+	unsigned int	i;
 
-    if(argc == 2)
-    {
-        init_map(game, argv[1]);
-        check_map(game, argv[1]);
-    }
-    else
-        perror("Wrong input!");
+	i = 0;
+	strlen = ft_strlen(s);
+	while (s[i])
+	{
+		while (i < strlen)
+		{
+			f(i, &s[i]);
+			i++;
+		}
+	}
 }

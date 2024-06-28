@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:37:48 by jseidere         ###   ########.fr       */
+/*   Created: 2023/09/18 10:25:01 by jseidere          #+#    #+#             */
+/*   Updated: 2024/06/20 15:30:05 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int main  (int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-    t_game *game;
-    (void) **argv;
-    
-    game = NULL;
+	size_t	i;
+	size_t	len;
+	char	*newstr;
 
-    if(argc == 2)
-    {
-        init_map(game, argv[1]);
-        check_map(game, argv[1]);
-    }
-    else
-        perror("Wrong input!");
+	i = 0;
+	len = ft_strlen(s);
+	if (s == 0 || f == 0)
+		return (0);
+	newstr = (char *) malloc(sizeof(char) * len + 1);
+	if (!newstr)
+		return (0);
+	while (i < len)
+	{
+		newstr[i] = f(i, s[i]);
+		i++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
 }

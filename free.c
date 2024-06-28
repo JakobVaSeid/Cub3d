@@ -6,9 +6,16 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 12:39:19 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:47:59 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int ft_error(char *str, t_game *game)
+{
+    if(game->fd)
+        close(game->fd);
+    perror(str);
+    return(0);
+}

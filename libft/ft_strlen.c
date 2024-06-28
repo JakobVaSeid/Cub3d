@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:37:48 by jseidere         ###   ########.fr       */
+/*   Created: 2023/09/05 11:59:34 by jseidere          #+#    #+#             */
+/*   Updated: 2023/09/20 16:01:48 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int main  (int argc, char **argv)
+size_t	ft_strlen(const char *str)
 {
-    t_game *game;
-    (void) **argv;
-    
-    game = NULL;
+	size_t	i;
 
-    if(argc == 2)
-    {
-        init_map(game, argv[1]);
-        check_map(game, argv[1]);
-    }
-    else
-        perror("Wrong input!");
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
+
+/* #include <stdio.h>
+
+int main ()
+{
+		char str[] = "Hello";
+
+		printf("%d", ft_strlen(str));
+} */
