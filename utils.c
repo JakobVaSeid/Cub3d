@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 12:43:56 by jseidere         ###   ########.fr       */
+/*   Created: 2024/06/28 11:53:58 by jseidere          #+#    #+#             */
+/*   Updated: 2024/06/28 12:42:27 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_var(t_game *game)
+int print_2D_array(char **str)
 {
-    game->fd = 0;
-    game->map = NULL;
-   //game->map->map = NULL;
-}
+    int i;
 
-int main  (int argc, char **argv)
-{
-    t_game game;
-    (void) **argv;
-    
+    i = 0;
 
-    if(argc == 2)
+    while(str[i])
     {
-        init_var(&game);
-        init_map(&game, argv[1]);
-        print_2D_array(game.map);
-        check_map(&game, argv[1]);
+        printf("%s\n", str[i]);
+        i++;
     }
-    else
-        perror("Wrong input!");
+    return (0);
 }
+

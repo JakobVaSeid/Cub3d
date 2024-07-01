@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 10:36:12 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:09:00 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ int check_map(t_game *game, char *argv)
 {    
     if(!right_fileextension(argv))
         perror("Wrong fileextension!\n");
-    if(!check_row(game->map->map))
+    if(!check_row(game->map))
         perror("Map error!\n");
-
     return (0);
 }

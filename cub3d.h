@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 11:45:39 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:08:07 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_map
 typedef struct s_game
 {
     int     fd;
-    t_map   *map;
+    char    **map;
+    //t_map   *map;
 }   t_game;
 
 ////////////////////////////////////////////
@@ -65,5 +66,8 @@ void	init_map(t_game *game, char *argv);
 
 //free.c
 int     ft_error(char *str, t_game *game);
+
+//utils.c
+int     print_2D_array(char **str);
 
 #endif

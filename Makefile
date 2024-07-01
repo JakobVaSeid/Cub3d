@@ -7,6 +7,7 @@ SOURCES =	cub3d.c \
 			free.c \
 			map_checker.c \
 			read_map.c \
+			utils.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c
 OBJECTS = $(SOURCES:.c=.o)

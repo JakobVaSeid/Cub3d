@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:29:22 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 11:48:38 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:51:48 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ char	*get_map_temp(t_game *game, char *map_temp, int fd)
 		line_temp = get_next_line(fd);
 		if (!line_temp)
 			single_free(map_temp, game);
-		if (line_temp && line_temp[0] == '\n')
-			double_free(line_temp, map_temp, fd, game);
+		/* if (line_temp && line_temp[0] == '\n')
+			double_free(line_temp, map_temp, fd, game); */
 		tmp = ft_strjoin(map_temp, line_temp);
 		if (!tmp)
 			double_free(map_temp, line_temp, fd, game);
@@ -87,8 +87,9 @@ void	init_map(t_game *game, char *argv)
 			single_free(map_temp, game);
 		if (close(game->fd))
 			single_free(map_temp, game);
-		game->map->map = ft_split(map_temp, '\n');
-		if (game->map->map == NULL)
+		printf("Map->temp: %s", map_temp);
+		game->map = ft_split(map_temp, '\n');
+		if (game->map == NULL)
 			single_free(map_temp, game);
 		free(map_temp);
 	}
