@@ -3,7 +3,6 @@ SOURCES =	cub3d.c \
 			init_game.c \
 			movement.c \
 			validate.c \
-			free.c \
 			map_checker.c \
 			raycaster.c
 OBJDIR = build
