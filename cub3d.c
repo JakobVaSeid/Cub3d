@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/24 18:34:05 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/01 17:23:24 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,24 @@ int	init_window(t_game *cub)
 		ft_putstr_fd("Error\nCan't init mlx\n", 2);
 		return (1);
 	}
-	cub->win = mlx_new_window(cub->mlx, 1000, 600, "Cub3D");
+	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!cub->win)
 	{
 		ft_putstr_fd("Error\nCan't create window\n", 2);
 		return (1);
 	}
+	cub->img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cub->addr = mlx_get_data_addr(cub->img, &cub->bits_per_pixel,
+			&cub->line_length, &cub->endian);
 	mlx_loop(cub->mlx);
 	return (0);
 }
 
-int main  (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game cub;
-	(void) **argv;
+	t_game	cub;
 
-	if(!check_argv(argc, argv, &cub))
+	if (!check_argv(argc, argv, &cub))
 		return (1);
 	init_window(&cub);
 	return (0);

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_protect.c                                       :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/12 22:26:37 by caigner           #+#    #+#             */
-/*   Updated: 2024/05/12 22:58:51 by caigner          ###   ########.fr       */
+/*   Created: 2024/07/01 14:12:50 by caigner           #+#    #+#             */
+/*   Updated: 2024/07/01 14:13:53 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "minishell.h"
-
-void	*ft_protect(t_common *c, void *ptr, ...)
+void	ft_free_split(char **split)
 {
-	va_list ap;
-	void *to_free;
+	int	i;
 
-	if (!ptr)
-	{
-		va_start(ap, ptr);
-		while ((to_free = va_arg(ap, void *)) != NULL)
-		{
-			free(to_free);
-		}
-		va_end(ap);
-		ft_clean_exit(c, NULL, 1);
-		return (NULL);
-	}
-	return (ptr);
+	i = 0;
+	if (!split)
+		return ;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }
