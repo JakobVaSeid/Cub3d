@@ -8,6 +8,8 @@ SOURCES =	cub3d.c \
 			map_checker.c \
 			read_map.c \
 			utils.c \
+			check_file.c \
+			map_utils_check.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c
 OBJECTS = $(SOURCES:.c=.o)

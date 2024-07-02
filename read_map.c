@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:29:22 by jseidere          #+#    #+#             */
-/*   Updated: 2024/06/28 12:51:48 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:51:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char	*get_map_temp(t_game *game, char *map_temp, int fd)
 			double_free(map_temp, line_temp, fd, game);
 		free(map_temp);
 		map_temp = tmp;
+		game->rows++;
 		if (check_for_newline(line_temp) == 1)
 		{
 			free(line_temp);
@@ -73,7 +74,7 @@ char	*get_map_temp(t_game *game, char *map_temp, int fd)
 void	init_map(t_game *game, char *argv)
 {
 	char	*map_temp;
-	
+
 	if (right_fileextension(argv))
 	{
 		game->fd = open(argv, O_RDONLY);
@@ -87,7 +88,6 @@ void	init_map(t_game *game, char *argv)
 			single_free(map_temp, game);
 		if (close(game->fd))
 			single_free(map_temp, game);
-		printf("Map->temp: %s", map_temp);
 		game->map = ft_split(map_temp, '\n');
 		if (game->map == NULL)
 			single_free(map_temp, game);
