@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 11:55:23 by caigner           #+#    #+#             */
-/*   Updated: 2023/09/12 16:47:00 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/06 11:39:44 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:47:45 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,28 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	j = 0;
-	if (*little == 0)
-	{
+	if (little[j] == '\0')
 		return ((char *)big);
-	}
-	if (big == 0 && len == 0)
+	if (len == 0)
 		return (0);
 	while (big[i] && i < len)
 	{
-		while (big[i + j] == little[j] && little[j] != 0 && i + j < len)
-		{
+		if (big[i + j] == little[j] && i + j < len)
 			j++;
+		else
+		{
+			j = 0;
+			i++;
 		}
-		if (little[j] == 0)
-			return ((char *)big + i);
-		j = 0;
-		i++;
+		if (little[j] == 0 && j != 0)
+			return ((char *)(big + i));
 	}
 	return (0);
 }
+
+/* #include <string.h>
+int main ()
+{
+	printf("Original:%s \n", strnstr("Hallo Sepp stehst", "Sepp", 0));
+  	printf("Fake:%s \n", ft_strnstr("Hallo Sepp stehst", "Sepp", 0));
+} */

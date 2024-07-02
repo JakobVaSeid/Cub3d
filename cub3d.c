@@ -3,39 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:05:33 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/02 13:18:25 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_argv(int ac, char **av, t_game *cub)
+void	init_var(t_game *game)
 {
-	if (ac == 1)
-	{
-		ft_putstr_fd("Error\nNo map file provided\n", 2);
-		return (0);
-	}
-	else if (ac > 2)
-	{
-		ft_putstr_fd("Error\nToo many arguments\n", 2);
-		return (0);
-	}
-	else if (ac == 2 && ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4))
-	{
-		ft_putstr_fd("Error\nInvalid file extension\n", 2);
-		return (0);
-	}
-	cub->fd = open(av[1], O_RDONLY);
-	if (cub->fd < 0)
-	{
-		ft_putstr_fd("Error\nCan't open file\n", 2);
-		return (0);
-	}
-	return (1);
+	game->fd = 0;
+	game->map = NULL;
+	game->rows = 0;
+	game->player = 0;
 }
 
 int	init_window(t_game *cub)
@@ -82,11 +64,21 @@ int	key_hook(int key, t_game *cub)
 
 int	main(int argc, char **argv)
 {
-	t_game	cub;
 
-	if (!check_argv(argc, argv, &cub))
-		return (1);
-	init_window(&cub);
-	mlx_hook(cub.win, 2, 1, key_hook, &cub);
+	t_game	game;
+
+	if (argc == 2)
+	{
+		init_var(&game);
+		init_map(&game, argv[1]);
+		print_td_array(game.map);
+		check_file(&game, argv[1]);
+		init_window(&game);
+		mlx_hook(game.win, 2, 1, key_hook, &game);
+	}
+	
+	else
+		perror("Wrong input!");
 	return (0);
 }
+

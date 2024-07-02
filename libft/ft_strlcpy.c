@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 14:49:52 by caigner           #+#    #+#             */
-/*   Updated: 2023/09/12 15:59:47 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/05 14:48:21 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:45:49 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,25 @@
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	len;
-	size_t	max;
 
-	len = 0;
-	while (src[len])
-		len++;
-	if (size == 0)
-		return (len);
-	max = 0;
-	if (size > 0)
-		max = size - 1;
 	i = 0;
-	while (i < max && src[i])
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] && i < (size - 1))
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = 0;
-	return (len);
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }
+
+/* #include <stdio.h>
+int main ()
+{
+	char dest[20];
+	const char src[] = "Jakob";
+	ft_strlcpy(dest, src, 10);
+
+	printf("%s \n", dest);
+} */

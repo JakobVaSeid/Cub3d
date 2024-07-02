@@ -3,50 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 11:50:55 by chris             #+#    #+#             */
-/*   Updated: 2023/09/12 15:40:11 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/14 16:40:41 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:44:00 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
-	char	*new;
+	char	*newstr;
 
 	if (s1 == 0 || s2 == 0)
 		return (0);
-	i = strlen(s1);
-	j = strlen(s2);
-	new = malloc(sizeof(char) *(i + j + 1));
-	if (new == 0)
-		return (0);
 	i = 0;
+	j = 0;
+	newstr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!newstr)
+		return (0);
 	while (s1[i])
 	{
-		new[i] = s1[i];
+		newstr[i] = s1[i];
 		i++;
 	}
-	j = 0;
 	while (s2[j])
 	{
-		new[i + j] = s2[j];
+		newstr[i] = s2[j];
+		i++;
 		j++;
 	}
-	new[i + j] = 0;
-	return (new);
+	newstr[i] = '\0';
+	return (newstr);
 }
+
+/* #include <stdio.h>
+int main ()
+{
+	char first_name[] = "Timo";
+	char last_name[] = "Beil";
+
+	char *result = ft_strjoin(first_name, last_name);
+
+	printf("Zusammengefasst:%s", result);
+} */

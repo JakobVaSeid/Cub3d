@@ -1,32 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 10:01:27 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/02 13:34:09 by jseidere         ###   ########.fr       */
+/*   Created: 2024/06/28 11:53:58 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 12:50:59 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	print_td_array(char **str)
 {
-	size_t			i;
-	unsigned char	*dest_ptr;
-	unsigned char	*src_ptr;
+	int	i;
 
-	if (src == 0 && dest == 0)
-		return (dest);
 	i = 0;
-	dest_ptr = (unsigned char *)dest;
-	src_ptr = (unsigned char *)src;
-	while (i < n)
+	while (str[i])
 	{
-		dest_ptr[i] = src_ptr[i];
+		printf("%s\n", str[i]);
 		i++;
 	}
-	return (dest);
+	return (0);
+}
+
+//skip spaces
+bool	skip_spaces(char *str, int *j)
+{
+	while (str[*j])
+	{
+		if (str[*j] == ' ')
+			(*j)++;
+		else
+			return (false);
+	}
+	return (true);
+}
+
+//check parameter
+void	count_player(t_game *game, char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_strchr("NSWE", str[i]))
+			game->player++;
+		i++;
+	}
 }

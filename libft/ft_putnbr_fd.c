@@ -3,31 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 18:20:36 by caigner           #+#    #+#             */
-/*   Updated: 2023/09/13 18:30:54 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/15 12:04:33 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:37:40 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
-	char	digit;
+	int	len;
 
+	len = 0;
 	if (n == -2147483648)
 	{
-		write (fd, "-2147483648", 11);
-		return ;
+		len += write (fd, "-2147483648", 11);
 	}
-	if (n < 0)
+	else if (n < 0)
 	{
-		write (fd, "-", 1);
+		len += ft_putchar_fd('-', fd);
 		n = -n;
+		len += ft_putnbr_fd(n, fd);
 	}
-	if (n >= 10)
-		ft_putnbr_fd(n / 10, fd);
-	digit = '0' + (n % 10);
-	write (fd, &digit, 1);
+	else if (n > 9)
+	{
+		len += ft_putnbr_fd(n / 10, fd);
+		len += ft_putnbr_fd(n % 10, fd);
+	}
+	else
+	{
+		len += ft_putchar_fd(n + 48, fd);
+	}
+	return (len);
 }
+
+/* int main ()
+{
+  ft_putnbr_fd(-2147483648, 1);
+} */

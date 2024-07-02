@@ -3,33 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 15:59:24 by caigner           #+#    #+#             */
-/*   Updated: 2023/09/07 14:58:17 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/14 11:08:40 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:41:51 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(const char *s)
 {
 	size_t	i;
-	size_t	j;
-	char	*p;
+	size_t	len;
+	char	*ptr;
 
 	i = 0;
-	j = 0;
-	while (src[i])
-		i++;
-	p = (char *)malloc(i + 1);
-	if (p == 0)
+	len = ft_strlen(s);
+	ptr = (char *) malloc(sizeof(char) * (len + 1));
+	if (ptr == 0)
 		return (0);
-	while (j < i)
+	while (s[i])
 	{
-		p[j] = src[j];
-		j++;
+		ptr[i] = s[i];
+		i++;
 	}
-	p[j] = '\0';
-	return (p);
+	ptr[i] = '\0';
+	return (ptr);
 }
+
+/* int main ()
+{
+	char test [] = "Hallo das ist ein Test!";
+
+	char *result = ft_strdup(test);
+
+	printf("Duplikat: %s", result);
+
+	free(result);
+} */

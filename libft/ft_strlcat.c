@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 14:50:09 by caigner           #+#    #+#             */
-/*   Updated: 2023/09/15 10:57:25 by codespace        ###   ########.fr       */
+/*   Created: 2023/09/11 15:55:38 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:44:58 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,32 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	dest_len;
-	size_t	src_len;
 	size_t	i;
+	size_t	j;
+	size_t	srclen;
 
-	if (size == 0)
-		return (ft_strlen(src));
-	dest_len = 0;
-	src_len = 0;
-	while (dest[dest_len] != 0 && dest_len < size)
-		dest_len++;
-	while (src[src_len] != 0)
-		src_len++;
-	if (size <= dest_len)
-		return (dest_len + src_len);
 	i = 0;
-	while (src[i] != 0 && dest_len + i < size - 1)
-	{
-		dest[dest_len + i] = src[i];
+	j = 0;
+	srclen = ft_strlen(src);
+	while (dest[i] && i < size)
 		i++;
+	if (size == i)
+		return (i + srclen);
+	while (src[j] && i + j < size - 1)
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	dest[dest_len + i] = 0;
-	return (dest_len + src_len);
+	dest[i + j] = '\0';
+	return (i + srclen);
 }
+
+/* #include <stdio.h>
+int main ()
+{
+	char dest[] = "Hallo ich heiße";
+	const char src[] = " Jakob";
+	ft_strlcat(dest, src, 82);
+
+	printf("%s \n", dest);
+}  */

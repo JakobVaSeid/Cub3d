@@ -3,70 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 18:36:36 by caigner           #+#    #+#             */
-/*   Updated: 2023/09/14 10:57:09 by caigner          ###   ########.fr       */
+/*   Created: 2023/09/18 10:53:16 by jseidere          #+#    #+#             */
+/*   Updated: 2024/07/02 13:33:24 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	sign(int n)
+static int	intlen(long long n)
 {
-	if (n < 0)
-		return (-n);
-	else
-		return (n);
-}
-
-static int	getsize(int n)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (n <= 0)
-		++i;
-	while (n != 0)
+	if (n < 0)
 	{
-		++i;
+		i++;
+		n = -n;
+	}
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		i++;
 		n /= 10;
 	}
 	return (i);
 }
 
+static void	sign(long n, char *str, int *i)
+{
+	if (n > 9)
+	{
+		sign(n / 10, str, i);
+		sign(n % 10, str, i);
+	}
+	else
+		str[(*i)++] = n + '0';
+}
+
 char	*ft_itoa(int n)
 {
-	char	*a;
-	int		size;
+	char		*str;
+	int			i;
+	long long	nbr;
 
-	size = getsize(n);
-	a = (char *)malloc(sizeof(char) * (size + 1));
-	if (!a)
+	nbr = n;
+	str = malloc(sizeof(char) * (intlen(nbr) + 1));
+	if (str == 0)
 		return (0);
-	a[size] = 0;
-	if (n < 0)
-		a[0] = '-';
-	else if (n == 0)
-		a[0] = '0';
-	while (n != 0)
+	i = 0;
+	if (nbr < 0)
 	{
-		size--;
-		a[size] = sign(n % 10) + '0';
-		n /= 10;
+		str[i++] = '-';
+		nbr = -nbr;
 	}
-	return (a);
+	sign(nbr, str, &i);
+	str[i] = '\0';
+	return (str);
 }
-
-/*#include <stdio.h>
-
-int main(){
-	char *p = ft_itoa(-21474864);
-	while (*p)
-	{
-		printf("%p\n", &p);
-		p++;
-	}
-	return 0;
-}
-*/

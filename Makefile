@@ -1,12 +1,19 @@
 NAME = cub3d
+LIBFT = libft
 SOURCES =	cub3d.c \
 			init_game.c \
 			movement.c \
 			validate.c \
 			free.c \
 			map_checker.c \
+			read_map.c \
+			utils.c \
+			check_file.c \
+			map_utils_check.c \
 			raycaster_1.c \
 			raycaster_2.c
+			get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c
 OBJDIR = build
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 DEP = $(OBJECTS:%.o=%.d)
