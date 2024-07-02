@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/01 17:23:24 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/02 13:05:33 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,27 @@ int	init_window(t_game *cub)
 	return (0);
 }
 
+int	close_program(t_game *cub, int exitcode)
+{
+	free_all(cub);
+	exit(exitcode);
+}
+
+int	key_hook(int key, t_game *cub)
+{
+	if (key == ESC)
+		close_program(cub, 0);
+	else if (key == W || key == ARROWUP)
+		(void)cub;//move();
+	else if (key == A)
+		(void)cub;//move();
+	else if (key == S || key == ARROWDOWN)
+		(void)cub;//move();
+	else if (key == D)
+		(void)cub;//move();
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	cub;
@@ -66,5 +87,6 @@ int	main(int argc, char **argv)
 	if (!check_argv(argc, argv, &cub))
 		return (1);
 	init_window(&cub);
+	mlx_hook(cub.win, 2, 1, key_hook, &cub);
 	return (0);
 }

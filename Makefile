@@ -3,8 +3,10 @@ SOURCES =	cub3d.c \
 			init_game.c \
 			movement.c \
 			validate.c \
+			free.c \
 			map_checker.c \
-			raycaster.c
+			raycaster_1.c \
+			raycaster_2.c
 OBJDIR = build
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 DEP = $(OBJECTS:%.o=%.d)

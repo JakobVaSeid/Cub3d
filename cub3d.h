@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/01 17:28:02 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/02 13:02:01 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,38 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
+
+////////////////////////////////////////////
+///////////////////MACROS//////////////////
+//////////////////////////////////////////
+
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
+# define NUM_TEXTURES 4
+# define FOV 60
+# define X 0
+# define Y 1
+# define HEIGHT 1
+# define FLOOR 0
+# define WALL 1
+# define DOOR 2
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
+
+//Keys
+
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define E 101
+# define ESC 65307
+# define ARROWUP 65362
+# define ARROWDOWN 65364
+# define ARROWLEFT 65361
+# define ARROWRIGHT 65363
 
 ////////////////////////////////////////////
 //////////////////STRUCTS//////////////////
@@ -85,29 +117,11 @@ typedef struct s_game
 	int			line_length;
 	int			endian;
 	int			fd;
-	t_texture	texture[4]; //N, S, E, W
+	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
 	t_map		map;
 	t_player	player;
 	t_raycast	raycast;
 }	t_game;
-
-////////////////////////////////////////////
-///////////////////MACROS//////////////////
-//////////////////////////////////////////
-
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-# define FOV 60
-# define X 0
-# define Y 1
-# define HEIGHT 1
-# define FLOOR 0
-# define WALL 1
-# define DOOR 2
-# define NORTH 0
-# define SOUTH 1
-# define WEST 2
-# define EAST 3
 
 ////////////////////////////////////////////
 /////////////////FUNCTIONS/////////////////
@@ -116,6 +130,10 @@ typedef struct s_game
 //cub3d.c
 
 //map_checker.c
+
+//free.c
+void	free_all(t_game *cub);
+void	close_window(t_game *cub);
 
 //raycaster_1.c
 void	determine_texture(t_game *cub, t_raycast *r);
