@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/01 17:26:05 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/02 13:56:29 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	raycaster(t_game *cub)
 	{
 		init_ray_struct(cub, &ray, x);
 		get_side_dist(&ray);
-		calculate_dist(&ray, cub->map.map);
+		calculate_dist(&ray, cub->map);
 		calculate_height(&ray);
 		determine_texture(cub, &ray);
 		draw_line(cub, x, &ray);

@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:18:25 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:52:16 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_var(t_game *game)
 	game->fd = 0;
 	game->map = NULL;
 	game->rows = 0;
-	game->player = 0;
+	game->player_amount = 0;
 }
 
 int	init_window(t_game *cub)

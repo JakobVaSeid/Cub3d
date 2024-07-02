@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 12:47:29 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:54:18 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_file(t_game *game, char *argv)
 		perror("Invalid Map!");
 	if (!check_row(game, game->map))
 		perror("Map error!\n");
-	if (game->player != 1)
+	if (game->player_amount != 1)
 		perror("Wrong player amount!\n");
 	if (!check_attributes(game))
 		perror("Wrong map params!");

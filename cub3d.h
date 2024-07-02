@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:23:50 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:00:06 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
-# include "get_next_line/get_next_line.h"
+# include "get_next_line.h"
 # include "libft/libft.h"
 # include <unistd.h>
 # include <fcntl.h>
@@ -119,7 +119,7 @@ typedef struct s_game
 	int		fd;
 	int		rows;
 	char	**map;
-	int		player;
+	int		player_amount;
 }	t_game;
 
 ////////////////////////////////////////////
