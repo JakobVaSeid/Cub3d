@@ -12,6 +12,7 @@ SOURCES =	cub3d.c \
 			map_utils_check.c \
 			raycaster_1.c \
 			raycaster_2.c \
+			render.c \
 			get_next_line.c \
 			get_next_line_utils.c
 OBJDIR = build
@@ -20,6 +21,7 @@ DEP = $(OBJECTS:%.o=%.d)
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -MMD -g -I. -I./ft_printf
 LIBXFLAGS = -lmlx -lXext -lX11
+MATHFLAGS = -lm
 AR = ar
 RM = rm
 
@@ -27,7 +29,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	make --no-print-directory -C ./libft
-	$(CC) $(OBJECTS) $(CFLAGS) $(LIBXFLAGS) -o $(NAME) -L./libft -lft
+	$(CC) $(OBJECTS) $(CFLAGS) $(LIBXFLAGS) $(MATHFLAGS) -o $(NAME) -L./libft -lft
 
 $(OBJDIR)/%.o:%.c
 	@mkdir -p $(OBJDIR)

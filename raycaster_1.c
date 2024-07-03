@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/03 18:17:32 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/04 00:53:48 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 		y++;
 	}
 }
+//init player//////////////////////
+void	initplayer(t_player *p){
+	p->dir_x = 0;
+	p->dir_y = 0;
+	p->x = 1;
+	p->y = 1;
+}
+///////////////////////////////////
 
 void	raycaster(t_game *game)
 {
@@ -62,6 +70,7 @@ void	raycaster(t_game *game)
 
 	p.plane_x = 0;
 	p.plane_y = FOV;
+	initplayer(&p);
 	game->player = p;
 	x = 0;
 	while (x < WINDOW_WIDTH)

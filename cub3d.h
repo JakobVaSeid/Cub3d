@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 18:34:34 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/03 22:57:07 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ typedef struct s_player
 	double	plane_y;
 	double	time;
 	double	old_time;
+	double	old_dir_x;
+	double	old_plane_x;
 }	t_player;
 
 typedef struct s_game

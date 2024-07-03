@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:43:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 19:26:54 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/03 23:07:26 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,26 @@ void	move(t_game *game, int key)
 		move_helper(game, game->player.plane_x, game->player.plane_y);
 }
 
-void	rotate(t_player *player)
+void	rotate(t_game *game, t_player *player, int key)
 {
-	//player->dir_x = player->dir_x * cos()
+	if (key == ARROWRIGHT)
+	{
+		player->old_dir_x = player->dir_x;
+		player->dir_x = player->dir_x * cos(-game->rot_speed) - player->dir_y * sin(-game->rot_speed);
+		player->dir_y = player->old_dir_x * sin(-game->rot_speed) + player->dir_y * cos(-game->rot_speed);
+		player->old_plane_x = player->plane_x;
+		player->plane_x = player->plane_x * cos(-game->rot_speed) - player->plane_y * sin(-game->rot_speed);
+		player->plane_y = player->old_plane_x * sin(-game->rot_speed) + player->plane_y * cos(-game->rot_speed);
+	}
+	if (key == ARROWLEFT)
+	{
+		player->old_dir_x = player->dir_x;
+		player->dir_x = player->dir_x * cos(game->rot_speed) - player->dir_y * sin(game->rot_speed);
+		player->dir_y = player->old_dir_x * sin(game->rot_speed) + player->dir_y * cos(game->rot_speed);
+		player->old_plane_x = player->plane_x;
+		player->plane_x = player->plane_x * cos(game->rot_speed) - player->plane_y * sin(game->rot_speed);
+		player->plane_y = player->old_plane_x * sin(game->rot_speed) + player->plane_y * cos(game->rot_speed);
+	}
 }
 
 int	key_hook(int key, t_game *game)
@@ -43,9 +60,7 @@ int	key_hook(int key, t_game *game)
 		free_success(game);
 	else if (key == W || key == ARROWUP || key == A || key == S || key == ARROWDOWN || key == D)
 		move(game, key);
-	if (key == ARROWLEFT)
-		rotate();
-	else if (key == ARROWRIGHT)
-		rotate();
+	if (key == ARROWLEFT || key == ARROWRIGHT)
+		rotate(game, &game->player, key);
 	return (0);
 }

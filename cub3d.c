@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 18:32:03 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/04 00:17:19 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ void	init_var(t_game *game)
 	game->rows = 0;
 	game->player_amount = 0;
 	game->win = NULL;
+	game->mlx = NULL;
+	game->img = NULL;
 	init_texture(game);
+	game->addr = malloc(WINDOW_HEIGHT * WINDOW_WIDTH * sizeof(int));
+	if (!game->addr)
+		ft_error("malloc failed\n", game);
 }
 
 int	init_window(t_game *game)
@@ -49,8 +54,14 @@ int	init_window(t_game *game)
 		return (1);
 	}
 	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!game->img)
+	{
+		ft_error("mlx_new_image failed\n", game);
+	}
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel,
 			&game->line_length, &game->endian);
+	if (!game->addr)
+		ft_error("mlx_get_data_addr", game);
 	return (0);
 }
 
