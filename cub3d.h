@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 14:00:06 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:04:40 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_player
 
 typedef struct s_game
 {
-    void		*mlx;
+	void		*mlx;
 	void		*win;
 	void		*img;
 	void		*addr;
@@ -116,10 +116,10 @@ typedef struct s_game
 	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
 	t_player	player;
 	t_raycast	raycast;
-	int		fd;
-	int		rows;
-	char	**map;
-	int		player_amount;
+	int			fd;
+	int			rows;
+	char		**map;
+	int			player_amount;
 }	t_game;
 
 ////////////////////////////////////////////
@@ -160,7 +160,8 @@ bool	skip_spaces(char *str, int *j);
 void	count_player(t_game *game, char *str);
 //free.c
 void	free_all(t_game *cub);
-void	close_window(t_game *cub);
+void	destroy_mlx(t_game *cub);
+int		free_success(t_game *game);
 
 //raycaster_1.c
 void	determine_texture(t_game *cub, t_raycast *r);

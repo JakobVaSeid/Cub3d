@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 12:48:49 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:58:45 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ bool	check_texture(char *str)
 		printf("dir: %s\n", dir);
 		if (!ft_strncmp(dir, "NO", 2) || !ft_strncmp(dir, "SO", 2) \
 			|| !ft_strncmp(dir, "WE", 2) || !ft_strncmp(dir, "EA", 2))
+		{
+			free(dir);
 			return (true);
+		}
 		else
 			break ;
 	}
+	free(dir);
 	return (false);
 }
 

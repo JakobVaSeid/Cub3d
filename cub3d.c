@@ -6,19 +6,18 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 12:27:44 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:04:17 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_texture(t_game *game)
+void	init_texture(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
-	while(i < NUM_TEXTURES)
+	while (i < NUM_TEXTURES)
 	{
 		game->texture[i].img = NULL;
 		i++;
@@ -56,16 +55,10 @@ int	init_window(t_game *cub)
 	return (0);
 }
 
-int	close_program(t_game *cub, int exitcode)
-{
-	free_all(cub);
-	exit(exitcode);
-}
-
 int	key_hook(int key, t_game *cub)
 {
 	if (key == ESC)
-		close_program(cub, 0);
+		free_success(cub);
 	else if (key == W || key == ARROWUP)
 		(void)cub;//move();
 	else if (key == A)
@@ -79,7 +72,6 @@ int	key_hook(int key, t_game *cub)
 
 int	main(int argc, char **argv)
 {
-
 	t_game	game;
 
 	if (argc == 2)
@@ -97,4 +89,3 @@ int	main(int argc, char **argv)
 		perror("Wrong input!");
 	return (0);
 }
-

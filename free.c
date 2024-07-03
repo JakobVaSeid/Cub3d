@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:25:43 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:02:19 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,23 @@ int	free_map(char **map)
 
 int	ft_error(char *str, t_game *game)
 {
-	if (game->fd)
-		close(game->fd);
-	if (game->map)
-		free_map(game->map);
-	perror(str);
-	return (0);
+	ft_putstr_fd(str, 2);
+	free_all(game);
+	exit(1);
 }
-void	close_window(t_game *cub)
+
+void	destroy_mlx(t_game *cub)
 {
 	int	i;
 
 	i = 0;
-	if (cub->mlx)
-		mlx_loop_end(cub->mlx);
 	while (i < NUM_TEXTURES)
 	{
 		if (cub->texture[i].img)
 			mlx_destroy_image(cub->mlx, cub->texture[i].img);
 		i++;
 	}
-	if (cub->win)
+	if (cub->mlx && cub->win)
 		mlx_destroy_window(cub->mlx, cub->win);
 	if (cub->mlx)
 	{
@@ -57,8 +53,17 @@ void	close_window(t_game *cub)
 	}
 }
 
-void	free_all(t_game *cub)
+int	free_success(t_game *game)
 {
-	//free everything
-	close_window(cub);
+	free_all(game);
+	exit(0);
+}
+
+void	free_all(t_game *game)
+{
+	if (game->map)
+		free_map(game->map);
+	destroy_mlx(game);
+	if (game->fd)
+		close(game->fd);
 }
