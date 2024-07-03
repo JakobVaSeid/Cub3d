@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:52:16 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:23:24 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_var(t_game *game)
 	game->map = NULL;
 	game->rows = 0;
 	game->player_amount = 0;
+	game->win = NULL;
 }
 
 int	init_window(t_game *cub)
@@ -37,7 +38,7 @@ int	init_window(t_game *cub)
 	cub->img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	cub->addr = mlx_get_data_addr(cub->img, &cub->bits_per_pixel,
 			&cub->line_length, &cub->endian);
-	mlx_loop(cub->mlx);
+	//mlx_loop(cub->mlx);
 	return (0);
 }
 
@@ -71,12 +72,13 @@ int	main(int argc, char **argv)
 	{
 		init_var(&game);
 		init_map(&game, argv[1]);
+		printf("Row: %d\n", game.rows);
 		print_td_array(game.map);
 		check_file(&game, argv[1]);
 		init_window(&game);
 		mlx_hook(game.win, 2, 1, key_hook, &game);
+		mlx_loop(game.mlx);
 	}
-	
 	else
 		perror("Wrong input!");
 	return (0);
