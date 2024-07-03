@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:19:29 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/03 18:34:34 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 # define NUM_TEXTURES 4
-# define FOV 60
+# define FOV 0.66
+# define MOVEMENT 5.0
+# define ROTATION 3.0
 # define X 0
 # define Y 1
 # define HEIGHT 1
@@ -88,10 +90,9 @@ typedef struct s_raycast
 	int				line_height;
 	int				line_start;
 	int				line_end;
-	double			plane_x;
+	double			cam_x;
 	t_texture		texture;
 	unsigned int	color;
-//	double	plane_y;
 }	t_raycast;
 
 typedef struct s_player
@@ -100,6 +101,8 @@ typedef struct s_player
 	double	y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	time;
 	double	old_time;
 }	t_player;
@@ -116,6 +119,8 @@ typedef struct s_game
 	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
 	t_player	player;
 	t_raycast	raycast;
+	double		move_speed;
+	double		rot_speed;
 	int			fd;
 	int			rows;
 	char		**map;
@@ -163,6 +168,9 @@ void	free_all(t_game *game);
 void	destroy_mlx(t_game *game);
 int		free_success(t_game *game);
 
+//render.c
+int	render(t_game *game);
+
 //raycaster_1.c
 void	determine_texture(t_game *game, t_raycast *r);
 void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color);
@@ -174,5 +182,8 @@ void	init_ray_struct(t_game *game, t_raycast *r, int i);
 void	get_side_dist(t_raycast *r);
 void	calculate_dist(t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
+
+//movement.c
+int	key_hook(int key, t_game *game);
 
 #endif

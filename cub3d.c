@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:20:28 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/03 18:32:03 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,9 @@ int	init_window(t_game *game)
 	return (0);
 }
 
-int	key_hook(int key, t_game *game)
-{
-	if (key == ESC)
-		free_success(game);
-	else if (key == W || key == ARROWUP)
-		(void)game;//move();
-	else if (key == A)
-		(void)game;//move();
-	else if (key == S || key == ARROWDOWN)
-		(void)game;//move();
-	else if (key == D)
-		(void)game;//move();
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game		game;
 
 	if (argc == 2)
 	{
@@ -81,6 +66,7 @@ int	main(int argc, char **argv)
 		print_td_array(game.map);
 		check_file(&game, argv[1]);
 		init_window(&game);
+		mlx_loop_hook(game.mlx, render, &game);
 		mlx_hook(game.win, 2, 1, key_hook, &game);
 		mlx_loop(game.mlx);
 	}
