@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:02:19 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:17:06 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	destroy_mlx(t_game *cub)
 			mlx_destroy_image(cub->mlx, cub->texture[i].img);
 		i++;
 	}
+	if (cub->img)
+		mlx_destroy_image(cub->mlx, cub->img);
 	if (cub->mlx && cub->win)
 		mlx_destroy_window(cub->mlx, cub->win);
 	if (cub->mlx)
