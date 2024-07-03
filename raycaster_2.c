@@ -6,19 +6,19 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:25:24 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/01 17:25:56 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/03 15:18:24 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3d.h"
 
-void	init_ray_struct(t_game *cub, t_raycast *r, int i)
+void	init_ray_struct(t_game *game, t_raycast *r, int i)
 {
 	r->plane_x = 2 * i / (double)WINDOW_WIDTH - 1;
-	r->pos_x = (int)cub->player.x;
-	r->pos_y = (int)cub->player.y;
-	r->dir_x = cub->player.dir_x;
-	r->dir_y = cub->player.dir_y;
+	r->pos_x = (int)game->player.x;
+	r->pos_y = (int)game->player.y;
+	r->dir_x = game->player.dir_x;
+	r->dir_y = game->player.dir_y;
 	r->hit = 0;
 	if (r->dir_x == 0)
 		r->delta_x = 1e30;

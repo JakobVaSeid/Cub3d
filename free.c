@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:02:19 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:22:02 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,25 @@ int	ft_error(char *str, t_game *game)
 	exit(1);
 }
 
-void	destroy_mlx(t_game *cub)
+void	destroy_mlx(t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < NUM_TEXTURES)
 	{
-		if (cub->texture[i].img)
-			mlx_destroy_image(cub->mlx, cub->texture[i].img);
+		if (game->texture[i].img)
+			mlx_destroy_image(game->mlx, game->texture[i].img);
 		i++;
 	}
-	if (cub->mlx && cub->win)
-		mlx_destroy_window(cub->mlx, cub->win);
-	if (cub->mlx)
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->mlx && game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
 	{
-		mlx_destroy_display(cub->mlx);
-		free(cub->mlx);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
 }
 

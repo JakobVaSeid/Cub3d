@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:04:17 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:20:28 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,38 @@ void	init_var(t_game *game)
 	init_texture(game);
 }
 
-int	init_window(t_game *cub)
+int	init_window(t_game *game)
 {
-	cub->mlx = mlx_init();
-	if (!cub->mlx)
+	game->mlx = mlx_init();
+	if (!game->mlx)
 	{
 		ft_putstr_fd("Error\nCan't init mlx\n", 2);
 		return (1);
 	}
-	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
-	if (!cub->win)
+	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
+	if (!game->win)
 	{
 		ft_putstr_fd("Error\nCan't create window\n", 2);
 		return (1);
 	}
-	cub->img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cub->addr = mlx_get_data_addr(cub->img, &cub->bits_per_pixel,
-			&cub->line_length, &cub->endian);
-	//mlx_loop(cub->mlx);
+	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel,
+			&game->line_length, &game->endian);
 	return (0);
 }
 
-int	key_hook(int key, t_game *cub)
+int	key_hook(int key, t_game *game)
 {
 	if (key == ESC)
-		free_success(cub);
+		free_success(game);
 	else if (key == W || key == ARROWUP)
-		(void)cub;//move();
+		(void)game;//move();
 	else if (key == A)
-		(void)cub;//move();
+		(void)game;//move();
 	else if (key == S || key == ARROWDOWN)
-		(void)cub;//move();
+		(void)game;//move();
 	else if (key == D)
-		(void)cub;//move();
+		(void)game;//move();
 	return (0);
 }
 
