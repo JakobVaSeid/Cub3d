@@ -6,11 +6,24 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 12:23:24 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:27:44 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void init_texture(t_game *game)
+{
+	int i;
+
+	i = 0;
+
+	while(i < NUM_TEXTURES)
+	{
+		game->texture[i].img = NULL;
+		i++;
+	}
+}
 
 void	init_var(t_game *game)
 {
@@ -19,6 +32,7 @@ void	init_var(t_game *game)
 	game->rows = 0;
 	game->player_amount = 0;
 	game->win = NULL;
+	init_texture(game);
 }
 
 int	init_window(t_game *cub)
