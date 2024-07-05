@@ -10,6 +10,7 @@ SOURCES =	cub3d.c \
 			utils.c \
 			check_file.c \
 			map_utils_check.c \
+			norm_map.c \
 			raycaster_1.c \
 			raycaster_2.c \
 			get_next_line.c \

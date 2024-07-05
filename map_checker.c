@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:29:36 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:09:13 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,11 @@ bool	only_walls(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ')
-			skip_spaces(str, &i);
+		skip_spaces(str, &i);
 		if (!ft_strchr("1 ", str[i]))
 			return (false);
-		if (str[i] == ' ')
-			skip_spaces(str, &i);
-		else
-			i++;
+		skip_spaces(str, &i);
+		i++;
 	}
 	return (true);
 }

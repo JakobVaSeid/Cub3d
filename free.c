@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:17:06 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:14:30 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,28 @@ int	ft_error(char *str, t_game *game)
 	exit(1);
 }
 
-void	destroy_mlx(t_game *cub)
+void	destroy_mlx(t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < NUM_TEXTURES)
 	{
-		if (cub->texture[i].img)
-			mlx_destroy_image(cub->mlx, cub->texture[i].img);
+		printf("Path:%s\n", game->texture[i].path);
+		if (game->texture[i].path)
+			free(game->texture[i].path);
+		if (game->texture[i].img)
+			mlx_destroy_image(game->mlx, game->texture[i].img);
 		i++;
 	}
-	if (cub->img)
-		mlx_destroy_image(cub->mlx, cub->img);
-	if (cub->mlx && cub->win)
-		mlx_destroy_window(cub->mlx, cub->win);
-	if (cub->mlx)
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->mlx && game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
 	{
-		mlx_destroy_display(cub->mlx);
-		free(cub->mlx);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
 }
 

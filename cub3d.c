@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:04:17 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:54:21 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_texture(t_game *game)
 	while (i < NUM_TEXTURES)
 	{
 		game->texture[i].img = NULL;
+		game->texture[i].addr = NULL;
+		game->texture[i].path = NULL;
 		i++;
 	}
 }
@@ -80,8 +82,8 @@ int	main(int argc, char **argv)
 		init_map(&game, argv[1]);
 		printf("Row: %d\n", game.rows);
 		print_td_array(game.map);
-		check_file(&game, argv[1]);
 		init_window(&game);
+		check_file(&game, argv[1]);
 		mlx_hook(game.win, 2, 1, key_hook, &game);
 		mlx_loop(game.mlx);
 	}

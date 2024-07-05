@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:04:40 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:35:59 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ typedef struct s_texture
 {
 	void	*img;
 	char	*addr;
+	char	*path;
 	int		height;
-	int		length;
+	int		width;
 }	t_texture;
 
 typedef struct s_raycast
@@ -141,8 +142,15 @@ bool	check_surr(t_game *game, int y, int x);
 bool	check_pos(t_game *game);
 
 //map_utils_check.c
-bool	check_texture(char *str);
+bool	check_texture(t_game *game, char *str);
 bool	check_attributes(t_game *game);
+bool	valid_texture(t_game *game, char *path, char *dir);
+bool	is_dir(char *str);
+bool	is_fc(char *str);
+
+//norm_map.c
+int		len_until_sc(char *str, char c);
+char    *norm_line(char *str);
 
 //read_map.c
 int		check_for_newline(char *str);
