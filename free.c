@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 18:14:30 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:48:23 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	free_map(char **map)
 int	ft_error(char *str, t_game *game)
 {
 	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
 	free_all(game);
 	exit(1);
 }

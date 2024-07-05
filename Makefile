@@ -2,6 +2,7 @@ NAME = cub3d
 LIBFT = libft
 SOURCES =	cub3d.c \
 			init_game.c \
+			init.c \
 			movement.c \
 			validate.c \
 			free.c \

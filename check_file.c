@@ -6,11 +6,24 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/04 15:57:11 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:49:47 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void get_rows(t_game *game)
+{
+	int i;
+
+	i = 0;
+
+	while(game->map[i])
+	{
+		game->rows++;
+		i++;
+	}
+}
 
 //check for right fileextension
 bool	right_fileextension(char *file)
@@ -27,14 +40,14 @@ bool	right_fileextension(char *file)
 int	check_file(t_game *game, char *argv)
 {
 	if (!right_fileextension(argv))
-		perror("Wrong fileextension!\n");
+		ft_error("Wrong fileextension!", game);
 	if (!check_pos(game))
-		perror("Invalid Map!");
+		ft_error("Invalid map!", game);
 	if (!check_row(game, game->map))
-		perror("Map error!\n");
+		ft_error("Map error!", game);
 	if (game->player_amount != 1)
-		perror("Wrong player amount!\n");
+		ft_error("Wrong player amount!", game);
 	if (!check_attributes(game))
-		perror("Wrong map params!");
+		ft_error("Wrong map, params", game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 19:09:13 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:36:35 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ bool	check_pos(t_game *game)
 	int	y;
 
 	y = 6;
-	while (y < 27)
+	while (y < game->rows)
 	{
 		x = 0;
 		while (game->map[y][x])

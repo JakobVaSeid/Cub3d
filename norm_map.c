@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 11:06:36 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:06:57 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int len_until_sc(char *str, char c)
 	int i;
 
 	i = 0;
-	while(str[i] && str[i] != c /* && str[i] != ',' */)
+	while(str[i] && str[i] != c)
 		i++;
 	return (i);
 }
@@ -31,6 +31,8 @@ char	*norm_line(char *str)
 
    i = 0;
    j = 0;
+   if(!str)
+	return (NULL);
    result = ft_strdup("");
    tmp = NULL;
    while(str[i])

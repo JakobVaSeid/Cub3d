@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/04 15:35:59 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:49:00 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_game
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			map_param;
 	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
 	t_player	player;
 	t_raycast	raycast;
@@ -128,11 +129,17 @@ typedef struct s_game
 //////////////////////////////////////////
 
 //cub3d.c
+
+//init.c
 void	init_var(t_game *game);
+int		init_window(t_game *cub);
+void	init_texture(t_game *game);
+int		init_img(t_game *game);
 
 //check_file.c
 bool	right_fileextension(char *file);
 int		check_file(t_game *game, char *argv);
+void	get_rows(t_game *game);
 
 //map_checker.c
 bool	only_allowed_chars(char *str);

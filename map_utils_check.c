@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 11:06:19 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:42:39 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,6 @@ bool	check_texture(t_game *game, char *str)
 	return (true);
 }
 
-int	xpm_to_img(void *mlx, char *path, void **img)
-{
-	int	height;
-	int	width;
-
-	*img = mlx_xpm_file_to_image(mlx, path, &height, &width);
-	if (*img == 0)
-		return (0);
-	return (1);
-}
-
 bool valid_texture(t_game *game, char *path, char *dir)
 {
 	if(!ft_strncmp(dir, "NO", 2))
@@ -85,10 +74,11 @@ bool valid_texture(t_game *game, char *path, char *dir)
 		game->texture[WEST].path = ft_strdup(path);
 	else if(!ft_strncmp(dir, "EA", 2))
 		game->texture[EAST].path = ft_strdup(path);
+	game->map_param++;
 	return (true);
 }
 
-bool valid_color(char *str)
+bool valid_color(t_game *game, char *str)
 {
 	int		i;
 	char	*number;
@@ -112,6 +102,7 @@ bool valid_color(char *str)
 		if (num > 255 || num < 0)
 			return (false);
 	}
+	game->map_param++;
 	return (true);
 }
 
@@ -124,7 +115,7 @@ int check_type(t_game *game, char *str)
 		return (false);
 	if(is_fc(str))
 	{
-		if(!valid_color(str))
+		if(!valid_color(game, str))
 			return(false);
 	}
 	else if(is_dir(str))
@@ -145,16 +136,15 @@ bool	check_attributes(t_game *game)
 	while (i < 6)
 	{
 		norm_input = norm_line(game->map[i]);
-		printf("Norm_Input: %s\n", norm_input);
 		if(!check_type(game, norm_input))
 		{
 			free(norm_input);
 			return (false);
 		}
 		free(norm_input);
-		/* if (!check_texture(game, game->map[i]))
-			return (false); */
 		i++;
 	}
+	if(game->map_param != 6)
+		return (false);
 	return (true);
 }
