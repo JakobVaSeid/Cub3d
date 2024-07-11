@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chris <chris@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/04 00:47:51 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/11 13:38:27 by chris            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ int	render(t_game *game)
 	static double	old_time;
 	double			time;
 	double			frame_time;
-	
+
+	old_time = 0;
 	time = get_time();
 	frame_time = (time - old_time) / 1000.0;
+	while ((get_time() - old_time) < (1000 / FPS))
+	{
+	}
 	old_time = time;
 //	clear_image(game->img);
 	raycaster(game);

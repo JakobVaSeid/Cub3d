@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chris <chris@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/04 00:53:48 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/11 13:46:32 by chris            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 	int		y;
 	double	step;
 	double	tex_pos;
-	int		tex_y;
+	//int		tex_y;
 
 	step = r->texture.height / r->line_height;
 	tex_pos = (r->line_start - WINDOW_HEIGHT / 2 + r->line_height / 2) * step;
 	y = r->line_start;
 	while (y < r->line_end)
 	{
-		tex_y = (int)tex_pos % r->texture.height;
+		//tex_y = (int)tex_pos % r->texture.height;
 		tex_pos += step;
 		r->color = *(unsigned int *)(r->texture.addr + (y * game->line_length
 					+ x * (game->bits_per_pixel / 8)));
