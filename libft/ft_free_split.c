@@ -6,9 +6,11 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:12:50 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/01 14:13:53 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 14:13:29 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_free_split(char **split)
 {

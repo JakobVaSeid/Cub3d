@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 14:58:45 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:48:10 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	check_texture(char *str)
 		if (str[i] == ' ')
 			skip_spaces(str, &i);
 		dir = ft_substr(str, i, 2);
-		printf("dir: %s\n", dir);
 		if (!ft_strncmp(dir, "NO", 2) || !ft_strncmp(dir, "SO", 2) \
 			|| !ft_strncmp(dir, "WE", 2) || !ft_strncmp(dir, "EA", 2))
 		{
@@ -38,6 +37,15 @@ bool	check_texture(char *str)
 	return (false);
 }
 
+void	add_texture(t_texture *texture, char *str)
+{
+	char **s;
+
+	s = ft_split(str, ' ');
+	texture->addr = ft_strdup(s[1]);
+	ft_free_split(s);
+}
+
 bool	check_attributes(t_game *game)
 {
 	int	i;
@@ -47,6 +55,7 @@ bool	check_attributes(t_game *game)
 	{
 		if (!check_texture(game->map[i]))
 			return (false);
+		add_texture(game->texture[i], game->map[i]);
 		i++;
 	}
 	return (true);

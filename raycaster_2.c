@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:25:24 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/15 11:34:00 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:03:37 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	calculate_dist(t_game *game, t_raycast *r, char **map)
 			r->pos_y += r->step_y;
 			r->side = Y;
 		}
-		if (r->pos_x < 0 || r->pos_x >= game->rows || r->pos_y < 0 || r->pos_y >= (int)ft_strlen(map[r->pos_x]))
-			break;
+		if (r->pos_x < 0 || r->pos_x >= (int)ft_strlen(map[r->pos_x]) || r->pos_y < 0 || r->pos_y >= game->rows - 7)
+			return ;
 		if (map[r->pos_x][r->pos_y] == WALL || map[r->pos_x][r->pos_y] == DOOR)
 			r->hit = 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 11:31:51 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:32:16 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ typedef struct s_texture
 {
 	void	*img;
 	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		height;
-	int		length;
+	int		width;
 }	t_texture;
 
 typedef struct s_raycast
@@ -92,7 +95,7 @@ typedef struct s_raycast
 	int				line_start;
 	int				line_end;
 	double			cam_x;
-	t_texture		texture;
+	t_texture		*texture;
 	unsigned int	color;
 }	t_raycast;
 
@@ -115,11 +118,11 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	void		*img;
-	void		*addr;
+	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
+	t_texture	*texture[NUM_TEXTURES]; //N, S, E, W
 	t_player	player;
 	t_raycast	raycast;
 	double		move_speed;

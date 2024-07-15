@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/15 11:40:54 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 14:05:30 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,14 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 
 	step = 0;
 	if (r->line_height)
-		step = r->texture.height / r->line_height;
+		step = r->texture->height / r->line_height;
 	tex_pos = (r->line_start - WINDOW_HEIGHT / 2 + r->line_height / 2) * step;
 	y = r->line_start;
 	while (y < r->line_end)
 	{
-		tex_y = (int)tex_pos % r->texture.height;
+		tex_y = (int)tex_pos % r->texture->height;
 		tex_pos += step;
-		r->color = *(unsigned int *)(r->texture.addr + (tex_y * r->
-
-
-game->line_length
-					+ x * (game->bits_per_pixel / 8)));
+		r->color = *(unsigned int *)(r->texture->addr + (tex_y * r->texture->line_length + x * (game->bits_per_pixel / 8)));
 		my_mlx_pixel_put(game, x, y, r->color);
 		y++;
 	}

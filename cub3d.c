@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 10:46:13 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:57:06 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	init_texture(t_game *game)
 	i = 0;
 	while (i < NUM_TEXTURES)
 	{
-		game->texture[i].img = NULL;
+		game->texture[i] = malloc(sizeof(t_texture));
+		game->texture[i]->img = NULL;
 		i++;
 	}
 }
@@ -71,6 +72,20 @@ int	init_window(t_game *game)
 	return (0);
 }
 
+void	xpm_to_texture(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		game->texture[i]->img = mlx_xpm_file_to_image(game->mlx, game->texture[i]->addr, &game->texture[i]->width, &game->texture[i]->height);
+		free(game->texture[i]->addr);
+		game->texture[i]->addr = mlx_get_data_addr(game->mlx, &game->texture[i]->bits_per_pixel, &game->texture[i]->line_length, &game->texture[i]->endian);
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		game;
@@ -79,10 +94,10 @@ int	main(int argc, char **argv)
 	{
 		init_var(&game);
 		init_map(&game, argv[1]);
-		printf("Row: %d\n", game.rows);
 		print_td_array(game.map);
 		check_file(&game, argv[1]);
-		init_window(&game);
+		init_window(&game);				//das muss vor check file passieren, weil die textures initialisiert werden
+		xpm_to_texture(&game);
 		mlx_loop_hook(game.mlx, render, &game);
 		mlx_hook(game.win, 2, 1, key_hook, &game);
 		mlx_loop(game.mlx);
