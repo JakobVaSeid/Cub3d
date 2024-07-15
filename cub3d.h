@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 11:21:41 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 11:31:51 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ void	raycaster(t_game *game);
 //raycaster_2.c
 void	init_ray_struct(t_game *game, t_raycast *r, int i);
 void	get_side_dist(t_raycast *r);
-void	calculate_dist(t_raycast *r, char **map);
+void	calculate_dist(t_game *game, t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
 
 //movement.c

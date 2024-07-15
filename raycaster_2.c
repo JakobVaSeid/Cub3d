@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:25:24 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/15 10:53:36 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 11:34:00 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_ray_struct(t_game *game, t_raycast *r, int x)
 	else
 		r->delta_x = fabs(1 / r->dir_x);
 	if (r->dir_y == 0.0)
-		r->dir_y = 1e30;
+		r->delta_y = 1e30;
 	else
 		r->delta_y = fabs(1 / r->dir_y);
 }
@@ -54,7 +54,7 @@ void	get_side_dist(t_raycast *r)
 	}
 }
 
-void	calculate_dist(t_raycast *r, char **map)
+void	calculate_dist(t_game *game, t_raycast *r, char **map)
 {
 	while (!r->hit)
 	{
@@ -70,6 +70,8 @@ void	calculate_dist(t_raycast *r, char **map)
 			r->pos_y += r->step_y;
 			r->side = Y;
 		}
+		if (r->pos_x < 0 || r->pos_x >= game->rows || r->pos_y < 0 || r->pos_y >= (int)ft_strlen(map[r->pos_x]))
+			break;
 		if (map[r->pos_x][r->pos_y] == WALL || map[r->pos_x][r->pos_y] == DOOR)
 			r->hit = 1;
 	}
