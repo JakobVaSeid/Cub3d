@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chris <chris@student.42.fr>                +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/11 13:46:32 by chris            ###   ########.fr       */
+/*   Updated: 2024/07/15 11:13:26 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 	double	tex_pos;
 	//int		tex_y;
 
-	step = r->texture.height / r->line_height;
+	step = 0;
+	if (r->line_height)
+		step = r->texture.height / r->line_height;
 	tex_pos = (r->line_start - WINDOW_HEIGHT / 2 + r->line_height / 2) * step;
 	y = r->line_start;
 	while (y < r->line_end)
@@ -53,25 +55,12 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 		y++;
 	}
 }
-//init player//////////////////////
-void	initplayer(t_player *p){
-	p->dir_x = 0;
-	p->dir_y = 0;
-	p->x = 1;
-	p->y = 1;
-}
-///////////////////////////////////
 
 void	raycaster(t_game *game)
 {
 	t_raycast	ray;
-	t_player	p;
 	int			x;
 
-	p.plane_x = 0;
-	p.plane_y = FOV;
-	initplayer(&p);
-	game->player = p;
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{

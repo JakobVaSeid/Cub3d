@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:25:24 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/03 16:49:55 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 10:53:36 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	init_ray_struct(t_game *game, t_raycast *r, int x)
 	r->dir_x = game->player.dir_x + game->player.plane_x * r->cam_x;
 	r->dir_y = game->player.dir_y + game->player.plane_y * r->cam_x;
 	r->hit = 0;
-	if (r->dir_x == 0)
+	if (r->dir_x == 0.0)
 		r->delta_x = 1e30;
 	else
 		r->delta_x = fabs(1 / r->dir_x);
-	if (r->dir_y == 0)
+	if (r->dir_y == 0.0)
 		r->dir_y = 1e30;
 	else
 		r->delta_y = fabs(1 / r->dir_y);

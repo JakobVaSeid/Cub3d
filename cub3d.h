@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chris <chris@student.42.fr>                +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/11 13:33:14 by chris            ###   ########.fr       */
+/*   Updated: 2024/07/15 11:21:41 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@
 # define X 0
 # define Y 1
 # define HEIGHT 1
-# define FLOOR 0
-# define WALL 1
-# define DOOR 2
+# define FLOOR '0'
+# define WALL '1'
+# define DOOR '2'
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2

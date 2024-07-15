@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/04 00:17:19 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/15 10:46:13 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ void	init_var(t_game *game)
 	game->addr = malloc(WINDOW_HEIGHT * WINDOW_WIDTH * sizeof(int));
 	if (!game->addr)
 		ft_error("malloc failed\n", game);
+	game->player.x = 0;
+	game->player.y = 0;
+	game->player.dir_x = 0;
+	game->player.dir_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = FOV;
 }
 
 int	init_window(t_game *game)
