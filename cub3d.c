@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/16 18:34:36 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:32:17 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	init_var(t_game *game)
 	game->player.dir_y = 0;
 	game->player.plane_x = 0;
 	game->player.plane_y = 0;
+	game->move_speed = MOVEMENT;
+	game->rot_speed = ROTATION;
 }
 
 void	texture_to_mlx(t_game *game)
@@ -92,6 +94,7 @@ int	main(int argc, char **argv)
 		init_window(&game);
 		mlx_loop_hook(game.mlx, render, &game);
 		mlx_hook(game.win, 2, 1, key_hook, &game);
+		mlx_hook(game.win, 17, 0L, free_success, &game);
 		mlx_loop(game.mlx);
 	}
 	else

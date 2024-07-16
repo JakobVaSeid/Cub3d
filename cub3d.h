@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/16 18:50:31 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/16 21:08:08 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@
 # define CCOLOR 13428223
 //
 
-# define WINDOW_WIDTH 1500
-# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 1900
+# define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
-# define FOV 0.66
-# define MOVEMENT 5.0
-# define ROTATION 3.0
+# define FOV 0.9
+# define MOVEMENT 0.2
+# define ROTATION 0.1
 # define FPS 60
 # define X 0
 # define Y 1

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:54:18 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:13:39 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	check_file(t_game *game, char *argv)
 		perror("Wrong player amount!\n");
 	if (!check_attributes(game))
 		perror("Wrong map params!");
+	game->map[(int)game->player.y][(int)game->player.y] = '0';
 	return (0);
 }
