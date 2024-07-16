@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 15:48:10 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/16 12:38:18 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ bool	check_texture(char *str)
 
 void	add_texture(t_texture *texture, char *str)
 {
-	char **s;
+	char	**s;
 
 	s = ft_split(str, ' ');
-	texture->addr = ft_strdup(s[1]);
+	texture->path = ft_strdup(s[1]);
 	ft_free_split(s);
 }
 

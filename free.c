@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 14:06:03 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/16 19:07:39 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void	destroy_mlx(t_game *game)
 	i = 0;
 	while (i < NUM_TEXTURES)
 	{
+		if (game->texture[i]->path)
+			free(game->texture[i]->path);
 		if (game->texture[i]->img)
 			mlx_destroy_image(game->mlx, game->texture[i]->img);
+		free(game->texture[i]);
 		i++;
 	}
-	if (game->img)
-		mlx_destroy_image(game->mlx, game->img);
 	if (game->mlx && game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -65,8 +66,6 @@ void	free_all(t_game *game)
 {
 	if (game->map)
 		free_map(game->map);
-	if (game->addr)
-		free(game->addr);
 	destroy_mlx(game);
 	if (game->fd)
 		close(game->fd);

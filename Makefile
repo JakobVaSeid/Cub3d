@@ -7,7 +7,8 @@ SOURCES =	cub3d.c \
 			free.c \
 			map_checker.c \
 			read_map.c \
-			utils.c \
+			utils_1.c \
+			utils_2.c \
 			check_file.c \
 			map_utils_check.c \
 			raycaster_1.c \

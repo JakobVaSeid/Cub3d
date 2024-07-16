@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 15:32:16 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/16 18:50:31 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@
 ///////////////////MACROS//////////////////
 //////////////////////////////////////////
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
+//remove later
+# define FCOLOR 7047734
+# define CCOLOR 13428223
+//
+
+# define WINDOW_WIDTH 1500
+# define WINDOW_HEIGHT 800
 # define NUM_TEXTURES 4
 # define FOV 0.66
 # define MOVEMENT 5.0
@@ -38,7 +43,7 @@
 # define FPS 60
 # define X 0
 # define Y 1
-# define HEIGHT 1
+# define HEIGHT 1.0
 # define FLOOR '0'
 # define WALL '1'
 # define DOOR '2'
@@ -69,6 +74,7 @@ typedef struct s_texture
 {
 	void	*img;
 	char	*addr;
+	char	*path;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -96,6 +102,7 @@ typedef struct s_raycast
 	int				line_end;
 	double			cam_x;
 	t_texture		*texture;
+	int				tex_num;
 	unsigned int	color;
 }	t_raycast;
 
@@ -123,6 +130,8 @@ typedef struct s_game
 	int			line_length;
 	int			endian;
 	t_texture	*texture[NUM_TEXTURES]; //N, S, E, W
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];	
 	t_player	player;
 	t_raycast	raycast;
 	double		move_speed;
@@ -165,31 +174,35 @@ void	init_map(t_game *game, char *argv);
 //free.c
 int		ft_error(char *str, t_game *game);
 
-//utils.c
+//utils_1.c
 int		print_td_array(char **str);
 bool	skip_spaces(char *str, int *j);
 void	count_player(t_game *game, char *str);
+
+//utils_2.c
+void	add_plane_and_dir_vector(t_game *game, char c);
+
 //free.c
 void	free_all(t_game *game);
 void	destroy_mlx(t_game *game);
 int		free_success(t_game *game);
 
 //render.c
-int	render(t_game *game);
+int		render(t_game *game);
 
 //raycaster_1.c
-void	determine_texture(t_game *game, t_raycast *r);
+int		determine_texture(t_game *game, t_raycast *r);
 void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color);
 void	draw_line(t_game *game, int x, t_raycast *r);
 void	raycaster(t_game *game);
 
 //raycaster_2.c
 void	init_ray_struct(t_game *game, t_raycast *r, int i);
-void	get_side_dist(t_raycast *r);
-void	calculate_dist(t_game *game, t_raycast *r, char **map);
+void	get_side_dist(t_game *game, t_raycast *r);
+void	calculate_dist(t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
 
 //movement.c
-int	key_hook(int key, t_game *game);
+int		key_hook(int key, t_game *game);
 
 #endif

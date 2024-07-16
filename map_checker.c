@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/15 11:20:24 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/16 18:37:34 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ bool	check_pos(t_game *game)
 				{
 					game->player.x = x + 0.5;
 					game->player.y = y + 0.5;
+					add_plane_and_dir_vector(game, game->map[y][x]);
 				}
 				if (!check_surr(game, y, x))
 					return (false);
