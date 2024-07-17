@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:40:53 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 15:32:06 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:36:34 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	init_var(t_game *game)
 int	init_window(t_game *cub)
 {
 	cub->mlx = mlx_init();
-    printf("cub->mlx: %p\n", cub->mlx);
 	if (!cub->mlx)
 	{
 		ft_putstr_fd("Error\nCan't init mlx\n", 2);
@@ -64,26 +63,22 @@ int	xpm_to_img(void *mlx, char *path, void **img)
 	int	height;
 	int	width;
 
-    printf("PathINXPM:%s\n", path);
-    printf("mlx: %p\n", mlx);
 	*img = mlx_xpm_file_to_image(mlx, path, &height, &width);
-    printf("here!");
 	if (*img == 0)
 		return (0);
 	return (1);
 }
 
-int init_img(t_game *game)
+int	init_img(t_game *game)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < NUM_TEXTURES)
-    {
-        printf("Path:%s\n", game->texture[i].path);
-        if(xpm_to_img(game->mlx, game->texture[i].path, game->texture[i].img))
-           return(0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (i < NUM_TEXTURES)
+	{
+		if (xpm_to_img(game->mlx, game->texture[i].path, game->texture[i].img))
+			return (0);
+		i++;
+	}
+	return (1);
 }

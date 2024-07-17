@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 11:36:35 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:19:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,6 @@ bool	only_walls(char *str)
 	return (true);
 }
 
-//copies the map
-/* void	copy_map(char **map, char **map_temp)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		map_temp[i] = ft_strdup(map[i]);
-		if (!map_temp[i])
-		{
-			free_map_temp(map_temp, i);
-			return ;
-		}
-		i++;
-	}
-} */
-
 //check each row if no norm errors
 bool	check_row(t_game *game, char **map)
 {
@@ -70,6 +52,8 @@ bool	check_row(t_game *game, char **map)
 	i = 6;
 	while (map[i])
 	{
+		if (is_empty(map[i]))
+			return (false);
 		if (!only_walls(map[6]) && !only_walls(map[game->rows]))
 			return (false);
 		if (!only_allowed_chars(map[i]))

@@ -6,19 +6,18 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 12:49:47 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:30:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void get_rows(t_game *game)
+void	get_rows(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
-	while(game->map[i])
+	while (game->map[i])
 	{
 		game->rows++;
 		i++;
@@ -45,9 +44,10 @@ int	check_file(t_game *game, char *argv)
 		ft_error("Invalid map!", game);
 	if (!check_row(game, game->map))
 		ft_error("Map error!", game);
+	norm_map(game);
 	if (game->player_amount != 1)
 		ft_error("Wrong player amount!", game);
 	if (!check_attributes(game))
-		ft_error("Wrong map, params", game);
+		ft_error("Wrong map params", game);
 	return (0);
 }

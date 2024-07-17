@@ -6,18 +6,20 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 14:42:39 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:40:02 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool is_dir(char *str)
+bool	right_path(char *path);
+
+bool	is_dir(char *str)
 {
-	int len;
+	int	len;
 
 	len = len_until_sc(str, ' ');
-	if(len != 2)
+	if (len != 2)
 		return (false);
 	if (!ft_strncmp(str, "NO", 2) || !ft_strncmp(str, "SO", 2) \
 			|| !ft_strncmp(str, "WE", 2) || !ft_strncmp(str, "EA", 2))
@@ -25,14 +27,14 @@ bool is_dir(char *str)
 	return (false);
 }
 
-bool is_fc(char *str)
+bool	is_fc(char *str)
 {
-	int len;
+	int	len;
 
 	len = len_until_sc(str, ' ');
-	if(len != 1)
+	if (len != 1)
 		return (false);
-	if(ft_strchr(str, 'F') || ft_strchr(str, 'C'))
+	if (ft_strchr(str, 'F') || ft_strchr(str, 'C'))
 		return (true);
 	return (false);
 }
@@ -46,14 +48,14 @@ bool	check_texture(t_game *game, char *str)
 	i = 0;
 	dir = NULL;
 	path = NULL;
-	if(!dir)
+	if (!dir)
 	{
 		dir = ft_substr(str, i, 2);
 		i += 3;
 	}
-	if(!path)
+	if (!path)
 		path = ft_substr(str, i, ft_strlen(str + i));
-	if(!valid_texture(game, path, dir))
+	if (!valid_texture(game, path, dir))
 	{
 		free(dir);
 		free(path);
@@ -64,21 +66,33 @@ bool	check_texture(t_game *game, char *str)
 	return (true);
 }
 
-bool valid_texture(t_game *game, char *path, char *dir)
+bool	valid_texture(t_game *game, char *path, char *dir)
 {
-	if(!ft_strncmp(dir, "NO", 2))
-		game->texture[NORTH].path = ft_strdup(path);
-	else if(!ft_strncmp(dir, "SO", 2))
-		game->texture[SOUTH].path = ft_strdup(path);
-	else if(!ft_strncmp(dir, "WE", 2))
-		game->texture[WEST].path = ft_strdup(path);
-	else if(!ft_strncmp(dir, "EA", 2))
-		game->texture[EAST].path = ft_strdup(path);
 	game->map_param++;
-	return (true);
+	if (!ft_strncmp(dir, "NO", 2) && right_path(path))
+	{
+		game->texture[NORTH].path = ft_strdup(path);
+		return (true);
+	}
+	else if (!ft_strncmp(dir, "SO", 2) && right_path(path))
+	{
+		game->texture[SOUTH].path = ft_strdup(path);
+		return (true);
+	}
+	else if (!ft_strncmp(dir, "WE", 2) && right_path(path))
+	{
+		game->texture[WEST].path = ft_strdup(path);
+		return (true);
+	}
+	else if (!ft_strncmp(dir, "EA", 2) && right_path(path))
+	{
+		game->texture[EAST].path = ft_strdup(path);
+		return (true);
+	}
+	return (false);
 }
 
-bool valid_color(t_game *game, char *str)
+bool	valid_color(t_game *game, char *str)
 {
 	int		i;
 	char	*number;
@@ -106,21 +120,21 @@ bool valid_color(t_game *game, char *str)
 	return (true);
 }
 
-int check_type(t_game *game, char *str)
+int	check_type(t_game *game, char *str)
 {
-	int len;
+	int	len;
 
 	len = len_until_sc(str, ' ');
-	if(len > 2)
+	if (len > 2)
 		return (false);
-	if(is_fc(str))
+	if (is_fc(str))
 	{
-		if(!valid_color(game, str))
-			return(false);
+		if (!valid_color(game, str))
+			return (false);
 	}
-	else if(is_dir(str))
+	else if (is_dir(str))
 	{
-		if(!check_texture(game, str))
+		if (!check_texture(game, str))
 			return (false);
 	}
 	return (true);
@@ -128,15 +142,15 @@ int check_type(t_game *game, char *str)
 
 bool	check_attributes(t_game *game)
 {
-	int	i;
-	char *norm_input;
+	int		i;
+	char	*norm_input;
 
 	i = 0;
 	norm_input = NULL;
 	while (i < 6)
 	{
 		norm_input = norm_line(game->map[i]);
-		if(!check_type(game, norm_input))
+		if (!check_type(game, norm_input))
 		{
 			free(norm_input);
 			return (false);
@@ -144,7 +158,22 @@ bool	check_attributes(t_game *game)
 		free(norm_input);
 		i++;
 	}
-	if(game->map_param != 6)
+	if (game->map_param != 6)
 		return (false);
 	return (true);
+}
+
+//check if correct file
+bool	right_path(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (false);
+	else
+	{
+		close(fd);
+		return (true);
+	}
 }
