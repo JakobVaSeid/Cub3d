@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:34:46 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:00:46 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ int	main(int argc, char **argv)
 		init_var(&game);
 		init_map(&game, argv[1]);
 		get_rows(&game);
-		printf("Row: %d\n", game.rows);
-		print_td_array(game.map);
 		check_file(&game, argv[1]);
 		init_window(&game);
+		mlx_hook(game.win, 2, 1L<<0, key_press, &game);
+		mlx_hook(game.win, 3, 1L<<1, key_release, &game);
 		mlx_loop_hook(game.mlx, render, &game);
-		mlx_hook(game.win, 2, 1, key_hook, &game);
 		mlx_hook(game.win, 17, 0L, free_success, &game);
 		mlx_loop(game.mlx);
 	}

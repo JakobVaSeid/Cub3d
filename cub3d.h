@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:43:48 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:05:55 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@
 //////////////////////////////////////////
 
 //remove later
-# define FCOLOR 7047734
-# define CCOLOR 13428223
+# define FCOLOR 65535
+//7047734
+# define CCOLOR 16776960
+// 13428223
 //
 
 # define WINDOW_WIDTH 1900
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
 # define FOV 0.9
-# define MOVEMENT 0.01
-# define ROTATION 0.1
+# define MOVEMENT 0.05
+# define ROTATION 0.015
 # define FPS 60
 # define X 0
 # define Y 1
@@ -60,11 +62,12 @@
 # define S 115
 # define D 100
 # define E 101
-# define ESC 65307
-# define ARROWUP 65362
-# define ARROWDOWN 65364
 # define ARROWLEFT 65361
+# define ARROWUP 65362
 # define ARROWRIGHT 65363
+# define ARROWDOWN 65364
+# define ESC 65307
+# define KEY_NUMS 65536
 
 ////////////////////////////////////////////
 //////////////////STRUCTS//////////////////
@@ -141,6 +144,7 @@ typedef struct s_game
 	int				rows;
 	char			**map;
 	int				player_amount;
+	int				key_state[KEY_NUMS];
 }	t_game;
 
 ////////////////////////////////////////////
@@ -225,6 +229,8 @@ void	calculate_dist(t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
 
 //movement.c
-int		key_hook(int key, t_game *game);
+int		key_press(int key, t_game *game);
+int		key_release(int key, t_game *game);
+void	handle_input(t_game *game);
 
 #endif

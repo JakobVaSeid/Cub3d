@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:33:40 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:02:53 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,4 @@ void	norm_map(t_game *game)
 	free_map(game->map);
 	game->map = new_map;
 	game->rows = j;
-	print_td_array(game->map);
 }
