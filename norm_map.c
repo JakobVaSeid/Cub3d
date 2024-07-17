@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:33:40 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:03:19 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*norm_line(char *str)
 		skip_spaces(str, &i);
 		free(tmp);
 	}
+	printf("Result: %s\n", result);
 	return (result);
 }
 

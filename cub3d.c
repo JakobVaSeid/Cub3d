@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:34:46 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:21:17 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 		init_var(&game);
 		init_map(&game, argv[1]);
 		get_rows(&game);
-		printf("Row: %d\n", game.rows);
 		print_td_array(game.map);
 		check_file(&game, argv[1]);
 		init_window(&game);

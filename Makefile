@@ -13,6 +13,7 @@ SOURCES =	cub3d.c \
 			check_file.c \
 			map_utils_check.c \
 			attribute_checker.c \
+			color_calc.c \
 			norm_map.c \
 			raycaster_1.c \
 			raycaster_2.c \

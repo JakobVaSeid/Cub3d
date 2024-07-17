@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:43:05 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:47:51 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:49:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	check_type(t_game *game, char *str)
 	{
 		if (!valid_color(game, str))
 			return (false);
+		get_number(game, str);
 	}
 	else if (is_dir(str))
 	{

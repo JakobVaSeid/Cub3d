@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:43:48 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:23:05 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define WINDOW_WIDTH 1900
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
-# define FOV 0.9
-# define MOVEMENT 0.01
+# define FOV 0.66
+# define MOVEMENT 0.1
 # define ROTATION 0.1
 # define FPS 60
 # define X 0
@@ -131,8 +131,8 @@ typedef struct s_game
 	int				endian;
 	int				map_param;
 	t_texture		texture[NUM_TEXTURES]; //N, S, E, W
-	unsigned int	floor_rgb;
-	unsigned int	ceiling_rgb;	
+	int				f_color;
+	int				c_color;	
 	t_player		player;
 	t_raycast		raycast;
 	double			move_speed;
@@ -184,6 +184,11 @@ bool	is_empty(char *str);
 bool	right_path(char *path);
 bool	check_attributes(t_game *game);
 int		check_type(t_game *game, char *str);
+
+//color_calc.c
+void	get_number(t_game *game, char *str);
+int		rgb_to_hex(int r, int g, int b);
+int		hex_to_dec(int hex);
 
 //read_map.c
 int		check_for_newline(char *str);
