@@ -37,6 +37,7 @@ SRCS =	ft_atoi.c \
 		ft_putnbr_fd.c \
 		ft_itoa.c \
 		ft_split.c \
+		ft_free_split.c \
 		ft_lstadd_back.c \
 		ft_lstadd_front.c \
 		ft_lstclear.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:19:10 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:12:33 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ bool	check_pos(t_game *game)
 		{
 			if (strchr("0NSWE", game->map[y][x]))
 			{
+				if (ft_strchr("NSWE", game->map[y][x]))
+				{
+					game->player.x = x + 0.5;
+					game->player.y = y + 0.5;
+					add_plane_and_dir_vector(game, game->map[y][x]);
+				}
 				if (!check_surr(game, y, x))
 					return (false);
 			}

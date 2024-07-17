@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:51:54 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:01:46 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,24 @@
 ///////////////////MACROS//////////////////
 //////////////////////////////////////////
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
+//remove later
+# define FCOLOR 7047734
+# define CCOLOR 13428223
+//
+
+# define WINDOW_WIDTH 1900
+# define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
-# define FOV 60
+# define FOV 0.9
+# define MOVEMENT 0.2
+# define ROTATION 0.1
+# define FPS 60
 # define X 0
 # define Y 1
-# define HEIGHT 1
-# define FLOOR 0
-# define WALL 1
-# define DOOR 2
+# define HEIGHT 1.0
+# define FLOOR '0'
+# define WALL '1'
+# define DOOR '2'
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
@@ -67,6 +75,9 @@ typedef struct s_texture
 	void	*img;
 	char	*addr;
 	char	*path;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		height;
 	int		width;
 }	t_texture;
@@ -89,10 +100,10 @@ typedef struct s_raycast
 	int				line_height;
 	int				line_start;
 	int				line_end;
-	double			plane_x;
-	t_texture		texture;
+	double			cam_x;
+	t_texture		*texture;
+	int				tex_num;
 	unsigned int	color;
-//	double	plane_y;
 }	t_raycast;
 
 typedef struct s_player
@@ -101,27 +112,35 @@ typedef struct s_player
 	double	y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	time;
 	double	old_time;
+	double	old_dir_x;
+	double	old_plane_x;
 }	t_player;
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	void		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			map_param;
-	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
-	t_player	player;
-	t_raycast	raycast;
-	int			fd;
-	int			rows;
-	char		**map;
-	int			player_amount;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				map_param;
+	t_texture		*texture[NUM_TEXTURES]; //N, S, E, W
+	unsigned int	floor_rgb[3];
+	unsigned int	ceiling_rgb[3];	
+	t_player		player;
+	t_raycast		raycast;
+	double			move_speed;
+	double			rot_speed;
+	int				fd;
+	int				rows;
+	char			**map;
+	int				player_amount;
 }	t_game;
 
 ////////////////////////////////////////////
@@ -177,25 +196,35 @@ void	init_map(t_game *game, char *argv);
 int		ft_error(char *str, t_game *game);
 int		free_map(char **map);
 
-//utils.c
+//utils_1.c
 int		print_td_array(char **str);
 bool	skip_spaces(char *str, int *j);
 void	count_player(t_game *game, char *str);
+
+//utils_2.c
+void	add_plane_and_dir_vector(t_game *game, char c);
+
 //free.c
 void	free_all(t_game *game);
 void	destroy_mlx(t_game *game);
 int		free_success(t_game *game);
 
+//render.c
+int		render(t_game *game);
+
 //raycaster_1.c
-void	determine_texture(t_game *game, t_raycast *r);
+int		determine_texture(t_game *game, t_raycast *r);
 void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color);
 void	draw_line(t_game *game, int x, t_raycast *r);
 void	raycaster(t_game *game);
 
 //raycaster_2.c
 void	init_ray_struct(t_game *game, t_raycast *r, int i);
-void	get_side_dist(t_raycast *r);
+void	get_side_dist(t_game *game, t_raycast *r);
 void	calculate_dist(t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
+
+//movement.c
+int		key_hook(int key, t_game *game);
 
 #endif
