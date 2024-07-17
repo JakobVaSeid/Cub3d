@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 17:30:32 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:33:36 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
 # define FOV 0.66
-# define MOVEMENT 0.1
-# define ROTATION 0.1
+# define MOVEMENT 0.02
+# define ROTATION 0.02
 # define FPS 60
 # define X 0
 # define Y 1
