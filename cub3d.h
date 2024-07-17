@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:29:16 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:47:25 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,16 +150,21 @@ bool	check_pos(t_game *game);
 
 //map_utils_check.c
 bool	check_texture(t_game *game, char *str);
-bool	check_attributes(t_game *game);
 bool	valid_texture(t_game *game, char *path, char *dir);
 bool	is_dir(char *str);
 bool	is_fc(char *str);
+bool	valid_color(t_game *game, char *str);
 
 //norm_map.c
 int		len_until_sc(char *str, char c);
 char	*norm_line(char *str);
 void	norm_map(t_game *game);
 bool	is_empty(char *str);
+
+//attribute_checker.c
+bool	right_path(char *path);
+bool	check_attributes(t_game *game);
+int		check_type(t_game *game, char *str);
 
 //read_map.c
 int		check_for_newline(char *str);
