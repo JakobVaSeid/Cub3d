@@ -1,7 +1,7 @@
-NO ../images/NO.xpm
-SO ../images/SO.xpm
-EA ../images/EA.xpm
-WE ../images/WE.xpm
+NO ./images/NO.xpm
+SO ./images/SO.xpm
+EA ./images/EA.xpm
+WE ./images/WE.xpm
 
 F 107,138,54
 C 204,229,255
@@ -13,7 +13,7 @@ C 204,229,255
 1111000001 101
 1000000111 111
 1001010001
-1E00010001
-1111111111				11111
-						10001
-						11111
+1N00010001
+1111111111            11111
+                      10001
+                      11111

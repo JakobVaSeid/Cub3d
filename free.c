@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:09:39 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:34:27 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	destroy_mlx(t_game *game)
 			free(game->texture[i].path);
 		if (game->texture[i].img)
 			mlx_destroy_image(game->mlx, game->texture[i].img);
-		free(game->texture[i]);
 		i++;
 	}
 	if (game->mlx && game->win)

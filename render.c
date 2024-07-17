@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/16 18:54:49 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:33:36 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_new_image(t_game *game)
 	{
 		ft_error("mlx_new_image failed\n", game);
 	}
-	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel,
+	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, \
 			&game->line_length, &game->endian);
 	if (!game->addr)
 		ft_error("mlx_get_data_addr", game);

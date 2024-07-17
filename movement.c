@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:43:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/16 20:41:38 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:33:57 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,17 @@ void	move_helper(t_game *game, double dir_x, double dir_y)
 
 	new_x = game->player.x + dir_x * game->move_speed;
 	new_y = game->player.y + dir_y * game->move_speed;
-	if ((int)new_y >= 0 && (int)new_y < game->rows && (int)new_x >= 0 && 
+	if ((int)new_y >= 0 && (int)new_y < game->rows && (int)new_x >= 0 && \
 		(int)new_x < (int)ft_strlen(game->map[(int)new_y]))
 	{
-		if (game->map[(int)new_y][(int)game->player.x] != WALL &&
+		if (game->map[(int)new_y][(int)game->player.x] != WALL && \
 			game->map[(int)new_y][(int)game->player.x] != DOOR)
 			game->player.y = new_y;
-		if (game->map[(int)game->player.y][(int)new_x] != WALL &&
+		if (game->map[(int)game->player.y][(int)new_x] != WALL && \
 			game->map[(int)game->player.y][(int)new_x] != DOOR)
 			game->player.x = new_x;
 	}
 }
-
-/* void	move_helper(t_game *game, double dir_x, double dir_y)
-{
-	if (!game->map[(int)(game->player.x + dir_x * game->move_speed)][(int)game->player.y])
-		game->player.x += dir_x * game->move_speed;
-	if (!game->map[(int)game->player.x][(int)(game->player.y + dir_y * game->move_speed)])
-		game->player.y += dir_y * game->move_speed;
-} */
 
 void	move(t_game *game, int key)
 {
@@ -77,7 +69,7 @@ int	key_hook(int key, t_game *game)
 {
 	if (key == ESC)
 		free_success(game);
-	else if (key == W || key == ARROWUP || key == A || key == S
+	else if (key == W || key == ARROWUP || key == A || key == S \
 		|| key == ARROWDOWN || key == D)
 		move(game, key);
 	else if (key == ARROWLEFT || key == ARROWRIGHT)

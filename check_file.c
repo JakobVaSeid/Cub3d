@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:08:23 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:32:05 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	check_file(t_game *game, char *argv)
 		ft_error("Wrong player amount!", game);
 	if (!check_attributes(game))
 		ft_error("Wrong map params", game);
-	game->map[(int)game->player.y][(int)game->player.y] = '0'; //wo anders sinnvoller?
+	//wo anders sinnvoller?
+	game->map[(int)game->player.y][(int)game->player.x] = '0';
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/16 20:24:39 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:37:36 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@ int	determine_texture(t_game *game, t_raycast *r)
 {
 	if (r->side == X && r->dir_x > 0)
 	{
-		return (r->texture->addr = mlx_get_data_addr(game->texture[EAST]->img,
-				&game->bits_per_pixel, &game->texture[EAST]->line_length,
-				&game->texture[EAST]->endian), r->tex_num = EAST, 0);
+		return (r->texture->addr = mlx_get_data_addr(game->texture[EAST].img, \
+				&game->bits_per_pixel, &game->texture[EAST].line_length, \
+				&game->texture[EAST].endian), r->tex_num = EAST, 0);
 	}
 	else if (r->side == X)
 	{
-		return (r->texture->addr = mlx_get_data_addr(game->texture[WEST]->img,
-				&game->bits_per_pixel, &game->texture[WEST]->line_length,
-				&game->texture[WEST]->endian), r->tex_num = WEST, 0);
+		return (r->texture->addr = mlx_get_data_addr(game->texture[WEST].img, \
+				&game->bits_per_pixel, &game->texture[WEST].line_length, \
+				&game->texture[WEST].endian), r->tex_num = WEST, 0);
 	}
 	else if (r->side == Y && r->dir_y > 0)
 	{
-		return (r->texture->addr = mlx_get_data_addr(game->texture[SOUTH]->img,
-				&game->bits_per_pixel, &game->texture[SOUTH]->line_length,
-				&game->texture[SOUTH]->endian), r->tex_num = SOUTH, 0);
+		return (r->texture->addr = mlx_get_data_addr(game->texture[SOUTH].img, \
+				&game->bits_per_pixel, &game->texture[SOUTH].line_length, \
+				&game->texture[SOUTH].endian), r->tex_num = SOUTH, 0);
 	}
 	else if (r->side == Y)
 	{
-		return (r->texture->addr = mlx_get_data_addr(game->texture[NORTH]->img,
-				&game->bits_per_pixel, &game->texture[NORTH]->line_length,
-				&game->texture[NORTH]->endian), r->tex_num = NORTH, 0);
+		return (r->texture->addr = mlx_get_data_addr(game->texture[NORTH].img, \
+				&game->bits_per_pixel, &game->texture[NORTH].line_length, \
+				&game->texture[NORTH].endian), r->tex_num = NORTH, 0);
 	}
 	return (1);
 }
@@ -45,8 +45,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color)
 {
 	char	*dest;
 
-	dest = game->addr + (y * game->line_length + x
-			* game->bits_per_pixel);
+	dest = game->addr + (y * game->line_length + x * game->bits_per_pixel);
 	*(unsigned int *)dest = color;
 }
 

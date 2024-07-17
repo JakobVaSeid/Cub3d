@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:40:53 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 12:36:34 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:18:24 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,36 @@ void	init_var(t_game *game)
 	game->map = NULL;
 	game->rows = 0;
 	game->player_amount = 0;
-	game->win = NULL;
 	game->map_param = 0;
+	game->mlx = NULL;
+	game->win = NULL;
+	game->img = NULL;
+	game->player.x = 0;
+	game->player.y = 0;
+	game->player.dir_x = 0;
+	game->player.dir_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0;
+	game->move_speed = MOVEMENT;
+	game->rot_speed = ROTATION;
 	init_texture(game);
 }
 
-int	init_window(t_game *cub)
+int	init_window(t_game *game)
 {
-	cub->mlx = mlx_init();
-	if (!cub->mlx)
+	game->mlx = mlx_init();
+	if (!game->mlx)
 	{
 		ft_putstr_fd("Error\nCan't init mlx\n", 2);
 		return (1);
 	}
-	cub->win = mlx_new_window(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
-	if (!cub->win)
+//	texture_to_mlx(game);
+	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
+	if (!game->win)
 	{
 		ft_putstr_fd("Error\nCan't create window\n", 2);
 		return (1);
 	}
-	cub->img = mlx_new_image(cub->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cub->addr = mlx_get_data_addr(cub->img, &cub->bits_per_pixel,
-			&cub->line_length, &cub->endian);
-	//mlx_loop(cub->mlx);
 	return (0);
 }
 

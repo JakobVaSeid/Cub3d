@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:01:46 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:43:48 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
 # define FOV 0.9
-# define MOVEMENT 0.2
+# define MOVEMENT 0.01
 # define ROTATION 0.1
 # define FPS 60
 # define X 0
@@ -130,9 +130,9 @@ typedef struct s_game
 	int				line_length;
 	int				endian;
 	int				map_param;
-	t_texture		*texture[NUM_TEXTURES]; //N, S, E, W
-	unsigned int	floor_rgb[3];
-	unsigned int	ceiling_rgb[3];	
+	t_texture		texture[NUM_TEXTURES]; //N, S, E, W
+	unsigned int	floor_rgb;
+	unsigned int	ceiling_rgb;	
 	t_player		player;
 	t_raycast		raycast;
 	double			move_speed;
