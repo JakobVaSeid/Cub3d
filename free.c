@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:22:02 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 12:52:21 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	free_map(char **map)
 int	ft_error(char *str, t_game *game)
 {
 	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
 	free_all(game);
 	exit(1);
 }
@@ -40,6 +41,9 @@ void	destroy_mlx(t_game *game)
 	i = 0;
 	while (i < NUM_TEXTURES)
 	{
+		printf("Path:%s\n", game->texture[i].path);
+		if (game->texture[i].path)
+			free(game->texture[i].path);
 		if (game->texture[i].img)
 			mlx_destroy_image(game->mlx, game->texture[i].img);
 		i++;

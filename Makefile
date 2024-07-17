@@ -2,6 +2,7 @@ NAME = cub3d
 LIBFT = libft
 SOURCES =	cub3d.c \
 			init_game.c \
+			init.c \
 			movement.c \
 			validate.c \
 			free.c \
@@ -10,6 +11,8 @@ SOURCES =	cub3d.c \
 			utils.c \
 			check_file.c \
 			map_utils_check.c \
+			attribute_checker.c \
+			norm_map.c \
 			raycaster_1.c \
 			raycaster_2.c \
 			get_next_line.c \

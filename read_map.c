@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:29:22 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 12:51:10 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:35:58 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	*get_map_temp(t_game *game, char *map_temp, int fd)
 			double_free(map_temp, line_temp, fd, game);
 		free(map_temp);
 		map_temp = tmp;
-		game->rows++;
 		if (check_for_newline(line_temp) == 1)
 		{
 			free(line_temp);

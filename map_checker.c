@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/02 13:29:36 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:19:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,14 @@ bool	only_walls(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ')
-			skip_spaces(str, &i);
+		skip_spaces(str, &i);
 		if (!ft_strchr("1 ", str[i]))
 			return (false);
-		if (str[i] == ' ')
-			skip_spaces(str, &i);
-		else
-			i++;
+		skip_spaces(str, &i);
+		i++;
 	}
 	return (true);
 }
-
-//copies the map
-/* void	copy_map(char **map, char **map_temp)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		map_temp[i] = ft_strdup(map[i]);
-		if (!map_temp[i])
-		{
-			free_map_temp(map_temp, i);
-			return ;
-		}
-		i++;
-	}
-} */
 
 //check each row if no norm errors
 bool	check_row(t_game *game, char **map)
@@ -73,6 +52,8 @@ bool	check_row(t_game *game, char **map)
 	i = 6;
 	while (map[i])
 	{
+		if (is_empty(map[i]))
+			return (false);
 		if (!only_walls(map[6]) && !only_walls(map[game->rows]))
 			return (false);
 		if (!only_allowed_chars(map[i]))
@@ -102,7 +83,7 @@ bool	check_pos(t_game *game)
 	int	y;
 
 	y = 6;
-	while (y < 27)
+	while (y < game->rows)
 	{
 		x = 0;
 		while (game->map[y][x])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/03 15:19:29 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 12:51:54 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ typedef struct s_texture
 {
 	void	*img;
 	char	*addr;
+	char	*path;
 	int		height;
-	int		length;
+	int		width;
 }	t_texture;
 
 typedef struct s_raycast
@@ -113,6 +114,7 @@ typedef struct s_game
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			map_param;
 	t_texture	texture[NUM_TEXTURES]; //N, S, E, W
 	t_player	player;
 	t_raycast	raycast;
@@ -127,11 +129,17 @@ typedef struct s_game
 //////////////////////////////////////////
 
 //cub3d.c
+
+//init.c
 void	init_var(t_game *game);
+int		init_window(t_game *cub);
+void	init_texture(t_game *game);
+int		init_img(t_game *game);
 
 //check_file.c
 bool	right_fileextension(char *file);
 int		check_file(t_game *game, char *argv);
+void	get_rows(t_game *game);
 
 //map_checker.c
 bool	only_allowed_chars(char *str);
@@ -141,8 +149,22 @@ bool	check_surr(t_game *game, int y, int x);
 bool	check_pos(t_game *game);
 
 //map_utils_check.c
-bool	check_texture(char *str);
+bool	check_texture(t_game *game, char *str);
+bool	valid_texture(t_game *game, char *path, char *dir);
+bool	is_dir(char *str);
+bool	is_fc(char *str);
+bool	valid_color(t_game *game, char *str);
+
+//norm_map.c
+int		len_until_sc(char *str, char c);
+char	*norm_line(char *str);
+void	norm_map(t_game *game);
+bool	is_empty(char *str);
+
+//attribute_checker.c
+bool	right_path(char *path);
 bool	check_attributes(t_game *game);
+int		check_type(t_game *game, char *str);
 
 //read_map.c
 int		check_for_newline(char *str);
@@ -153,6 +175,7 @@ void	init_map(t_game *game, char *argv);
 
 //free.c
 int		ft_error(char *str, t_game *game);
+int		free_map(char **map);
 
 //utils.c
 int		print_td_array(char **str);
