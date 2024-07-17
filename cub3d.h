@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 17:23:05 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:30:32 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@
 //////////////////////////////////////////
 
 //remove later
-# define FCOLOR 7047734
-# define CCOLOR 13428223
+# define FCOLOR 65535
+//7047734
+# define CCOLOR 16776960
+// 13428223
 //
 
 # define WINDOW_WIDTH 1900
@@ -60,11 +62,12 @@
 # define S 115
 # define D 100
 # define E 101
-# define ESC 65307
-# define ARROWUP 65362
-# define ARROWDOWN 65364
 # define ARROWLEFT 65361
+# define ARROWUP 65362
 # define ARROWRIGHT 65363
+# define ARROWDOWN 65364
+# define ESC 65307
+# define KEY_NUMS 65536
 
 ////////////////////////////////////////////
 //////////////////STRUCTS//////////////////
@@ -141,6 +144,7 @@ typedef struct s_game
 	int				rows;
 	char			**map;
 	int				player_amount;
+	int				key_state[KEY_NUMS];
 }	t_game;
 
 ////////////////////////////////////////////
@@ -230,6 +234,8 @@ void	calculate_dist(t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
 
 //movement.c
-int		key_hook(int key, t_game *game);
+int		key_press(int key, t_game *game);
+int		key_release(int key, t_game *game);
+void	handle_input(t_game *game);
 
 #endif

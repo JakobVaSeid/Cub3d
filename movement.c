@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:43:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:33:57 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:02:09 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move_helper(t_game *game, double dir_x, double dir_y)
 
 	new_x = game->player.x + dir_x * game->move_speed;
 	new_y = game->player.y + dir_y * game->move_speed;
-	if ((int)new_y >= 0 && (int)new_y < game->rows && (int)new_x >= 0 && \
+	if ((int)new_y >= 6 && (int)new_y < game->rows && (int)new_x >= 0 && \
 		(int)new_x < (int)ft_strlen(game->map[(int)new_y]))
 	{
 		if (game->map[(int)new_y][(int)game->player.x] != WALL && \
@@ -65,14 +65,42 @@ void	rotate(t_game *game, t_player *player, int key)
 	player->plane_y = old_plane_x * sin_rot + player->plane_y * cos_rot;
 }
 
-int	key_hook(int key, t_game *game)
+void	handle_input(t_game *game)
 {
-	if (key == ESC)
+	double move_x = 0;
+	double move_y = 0;
+
+	if (game->key_state[W] || game->key_state[ARROWUP])
+	{
+		move_x += game->player.dir_x;
+		move_y += game->player.dir_y;
+	}
+	if (game->key_state[S] || game->key_state[ARROWDOWN])
+	{
+		move_x -= game->player.dir_x;
+		move_y -= game->player.dir_y;
+	}
+	if (game->key_state[A])
+	{
+		move_x -= game->player.plane_x;
+		move_y -= game->player.plane_y;
+	}
+	if (game->key_state[D])
+	{
+		move_x += game->player.plane_x;
+		move_y += game->player.plane_y;
+	}
+	if (move_x != 0 && move_y != 0)
+	{
+		double length = sqrt(move_x * move_x + move_y * move_y);
+		move_x /= length;
+		move_y /= length;
+	}
+	move_helper(game, move_x, move_y);
+	if (game->key_state[ARROWLEFT])
+		rotate(game, &game->player, ARROWLEFT);
+	if (game->key_state[ARROWRIGHT])
+		rotate(game, &game->player, ARROWRIGHT);
+	if (game->key_state[ESC])
 		free_success(game);
-	else if (key == W || key == ARROWUP || key == A || key == S \
-		|| key == ARROWDOWN || key == D)
-		move(game, key);
-	else if (key == ARROWLEFT || key == ARROWRIGHT)
-		rotate(game, &game->player, key);
-	return (0);
 }
