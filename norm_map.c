@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 17:30:42 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 19:46:35 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ int	len_until_sc(char *str, char c)
 char	*norm_line(char *str)
 {
 	int		i;
-	int		j;
 	char	*result;
 	char	*tmp;
+	char	*tmp2;
 
 	i = 0;
-	j = 0;
 	if (!str)
 		return (NULL);
 	result = ft_strdup("");
@@ -39,15 +38,22 @@ char	*norm_line(char *str)
 	{
 		skip_spaces(str, &i);
 		tmp = ft_substr(str, i, len_until_sc(str + i, ' '));
-		result = ft_strjoin(result, tmp);
+		concat_string(&result, &tmp2, tmp);
 		if (is_dir(tmp) || is_fc(tmp))
-			result = ft_strjoin(result, " ");
+			concat_string(&result, &tmp2, " ");
 		i += len_until_sc(str + i, ' ');
 		skip_spaces(str, &i);
 		free(tmp);
 	}
-	printf("Result: %s\n", result);
 	return (result);
+}
+
+void	concat_string(char **result, char **tmp2, char *tmp)
+{
+	*tmp2 = ft_strdup(*result);
+	free(*result);
+	*result = ft_strjoin(*tmp2, tmp);
+	free(*tmp2);
 }
 
 //delete lines with only spaces
