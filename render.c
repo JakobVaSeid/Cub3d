@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/17 16:08:35 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:45:32 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_background(t_game *game)
 	{
 		y = 0;
 		while (y < WINDOW_HEIGHT / 2)
-			draw_background(game, x, y++, CCOLOR);
+			draw_background(game, x, y++, game->c_color);
 		x++;
 	}
 	x = 0;
@@ -61,7 +61,7 @@ void	ft_background(t_game *game)
 	{
 		y = WINDOW_HEIGHT / 2;
 		while (y < WINDOW_HEIGHT)
-			draw_background(game, x, y++, FCOLOR);
+			draw_background(game, x, y++, game->f_color);
 		x++;
 	}
 }
