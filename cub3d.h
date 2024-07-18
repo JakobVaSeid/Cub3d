@@ -6,21 +6,21 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 16:11:41 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 18:27:34 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "get_next_line.h"
+# include "libft/libft.h"
 # include <mlx.h>
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
-# include "get_next_line.h"
-# include "libft/libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
@@ -105,6 +105,7 @@ typedef struct s_raycast
 	int				line_start;
 	int				line_end;
 	t_texture		*texture;
+	double			wall_x;
 	unsigned int	color;
 }	t_raycast;
 
