@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 14:51:58 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 16:11:41 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
 # define FOV 0.66
-# define MOVEMENT 0.02
-# define ROTATION 0.02
+# define MOVEMENT 0.04
+# define ROTATION 0.03
 # define FPS 60
 # define X 0
 # define Y 1
@@ -87,6 +87,7 @@ typedef struct s_texture
 
 typedef struct s_raycast
 {
+	double			cam_x;
 	int				pos_x; // current x or y player
 	int				pos_y;
 	double			dir_x; // ray direction
@@ -103,9 +104,7 @@ typedef struct s_raycast
 	int				line_height;
 	int				line_start;
 	int				line_end;
-	double			cam_x;
 	t_texture		*texture;
-	int				tex_num;
 	unsigned int	color;
 }	t_raycast;
 
@@ -157,6 +156,7 @@ typedef struct s_game
 void	init_var(t_game *game);
 int		init_window(t_game *cub);
 void	init_texture(t_game *game);
+int		xpm_to_img(void *mlx, char *path, void **img);
 int		init_img(t_game *game);
 
 //check_file.c
@@ -205,6 +205,9 @@ void	init_map(t_game *game, char *argv);
 //free.c
 int		ft_error(char *str, t_game *game);
 int		free_map(char **map);
+void	destroy_mlx(t_game *game);
+int		free_success(t_game *game);
+void	free_all(t_game *game);
 
 //utils_1.c
 int		print_td_array(char **str);
@@ -213,13 +216,14 @@ void	count_player(t_game *game, char *str);
 
 //utils_2.c
 void	add_plane_and_dir_vector(t_game *game, char c);
-
-//free.c
-void	free_all(t_game *game);
-void	destroy_mlx(t_game *game);
-int		free_success(t_game *game);
+int		key_press(int key, t_game *game);
+int		key_release(int key, t_game *game);
+void	ft_texture_to_mlx(t_game *game);
 
 //render.c
+void	ft_new_image(t_game *game);
+void	draw_background(t_game *game, int x, int y, unsigned int color);
+void	ft_background(t_game *game);
 int		render(t_game *game);
 
 //raycaster_1.c
@@ -235,8 +239,6 @@ void	calculate_dist(t_raycast *r, char **map);
 void	calculate_height(t_raycast *r);
 
 //movement.c
-int		key_press(int key, t_game *game);
-int		key_release(int key, t_game *game);
 void	handle_input(t_game *g, double move_x, double move_y);
 
 #endif

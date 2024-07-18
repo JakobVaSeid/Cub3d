@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:36:54 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/17 16:32:10 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 16:08:22 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,18 @@ int	key_release(int key, t_game *game)
 	if (key >= 0 && key <= KEY_NUMS)
 		game->key_state[key] = false;
 	return (0);
+}
+
+void	ft_texture_to_mlx(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		game->texture[i].img = mlx_xpm_file_to_image(game->mlx, \
+				game->texture[i].path, &game->texture[i].width, \
+				&game->texture[i].height);
+		i++;
+	}
 }

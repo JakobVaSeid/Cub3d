@@ -6,20 +6,20 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/18 14:55:46 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 16:20:13 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3d.h"
 
-double	get_time(void)
+/* double	get_time(void)
 {
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (ft_putstr_fd("gettimeofday failed \n", 2), -1);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
+} */
 
 void	ft_new_image(t_game *game)
 {

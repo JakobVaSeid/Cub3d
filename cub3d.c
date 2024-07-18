@@ -6,26 +6,11 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:37 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 14:16:04 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 15:10:37 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	texture_to_mlx(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		game->texture[i].img = mlx_xpm_file_to_image(game->mlx, \
-				game->texture[i].path, &game->texture[i].width, \
-				&game->texture[i].height);
-		free(game->texture[i].path);
-		i++;
-	}
-}
 
 int	main(int argc, char **argv)
 {

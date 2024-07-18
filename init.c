@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:40:53 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 15:54:21 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 15:09:02 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	init_window(t_game *game)
 		ft_putstr_fd("Error\nCan't init mlx\n", 2);
 		return (1);
 	}
-//	texture_to_mlx(game);
+	ft_texture_to_mlx(game);
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!game->win)
 	{
