@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:43:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 14:51:32 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 21:30:38 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void	handle_input(t_game *g, double move_x, double move_y)
 	if (g->key_state[ARROWRIGHT])
 		rotate(g, &g->player, ARROWRIGHT);
 	if (g->key_state[ESC])
-		free_success(g);
+		free_exit(g);
 }

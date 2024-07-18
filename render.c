@@ -6,23 +6,22 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/18 19:11:55 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 22:26:30 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3d.h"
 
-void	ft_new_image(t_game *game)
+bool	ft_new_image(t_game *game)
 {
 	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!game->img)
-	{
-		ft_error("mlx_new_image failed\n", game);
-	}
+		return (ft_error("mlx_new_image failed\n", game), false);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, \
 			&game->line_length, &game->endian);
 	if (!game->addr)
-		ft_error("mlx_get_data_addr", game);
+		return (ft_error("mlx_get_data_addr", game), false);
+	return (true);
 }
 
 void	draw_background(t_game *game, int x, int y, unsigned int color)
@@ -64,7 +63,8 @@ int	render(t_game *game)
 	move_x = 0;
 	move_y = 0;
 	handle_input(game, move_x, move_y);
-	ft_new_image(game);
+	if (!ft_new_image(game))
+		free_exit(game);
 	ft_background(game);
 	raycaster(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

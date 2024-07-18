@@ -6,13 +6,13 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/18 19:09:11 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 22:30:40 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3d.h"
 
-int	determine_texture(t_game *game, t_raycast *r)
+void	determine_texture(t_game *game, t_raycast *r)
 {
 	if (r->side == X && r->dir_x > 0)
 		r->texture = &game->texture[EAST];
@@ -25,7 +25,8 @@ int	determine_texture(t_game *game, t_raycast *r)
 	r->texture->addr = mlx_get_data_addr(r->texture->img, \
 				&r->texture->bits_per_pixel, &r->texture->line_length, \
 				&r->texture->endian);
-	return (1);
+	if (!r->texture->addr)
+		free_exit(game);
 }
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color)
@@ -73,7 +74,7 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 }
 
 /* 
-	only colors no textures
+	------ only colors no textures ------
 		
 void	draw_line(t_game *game, int x, t_raycast *r)
 {

@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 18:27:34 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 22:32:11 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
 # define FOV 0.66
-# define MOVEMENT 0.04
+# define MOVEMENT 0.03
 # define ROTATION 0.03
 # define FPS 60
 # define X 0
@@ -67,7 +67,7 @@
 # define ARROWRIGHT 65363
 # define ARROWDOWN 65364
 # define ESC 65307
-# define KEY_NUMS 65536
+# define KEY_NUMS 65365
 
 ////////////////////////////////////////////
 //////////////////STRUCTS//////////////////
@@ -155,7 +155,7 @@ typedef struct s_game
 
 //init.c
 void	init_var(t_game *game);
-int		init_window(t_game *cub);
+bool	init_window(t_game *cub);
 void	init_texture(t_game *game);
 int		xpm_to_img(void *mlx, char *path, void **img);
 int		init_img(t_game *game);
@@ -207,7 +207,7 @@ void	init_map(t_game *game, char *argv);
 int		ft_error(char *str, t_game *game);
 int		free_map(char **map);
 void	destroy_mlx(t_game *game);
-int		free_success(t_game *game);
+int		free_exit(t_game *game);
 void	free_all(t_game *game);
 
 //utils_1.c
@@ -222,13 +222,13 @@ int		key_release(int key, t_game *game);
 void	ft_texture_to_mlx(t_game *game);
 
 //render.c
-void	ft_new_image(t_game *game);
+bool	ft_new_image(t_game *game);
 void	draw_background(t_game *game, int x, int y, unsigned int color);
 void	ft_background(t_game *game);
 int		render(t_game *game);
 
 //raycaster_1.c
-int		determine_texture(t_game *game, t_raycast *r);
+void	determine_texture(t_game *game, t_raycast *r);
 void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color);
 void	draw_line(t_game *game, int x, t_raycast *r);
 void	raycaster(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:40:53 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 15:09:02 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 21:26:43 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ void	init_var(t_game *game)
 	init_texture(game);
 }
 
-int	init_window(t_game *game)
+bool	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
 		ft_putstr_fd("Error\nCan't init mlx\n", 2);
-		return (1);
+		return (false);
 	}
 	ft_texture_to_mlx(game);
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!game->win)
 	{
 		ft_putstr_fd("Error\nCan't create window\n", 2);
-		return (1);
+		return (false);
 	}
-	return (0);
+	return (true);
 }
 
 int	xpm_to_img(void *mlx, char *path, void **img)

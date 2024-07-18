@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 16:26:44 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 21:29:57 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	destroy_mlx(t_game *game)
 	}
 }
 
-int	free_success(t_game *game)
+int	free_exit(t_game *game)
 {
 	free_all(game);
 	exit(0);
