@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/17 17:45:32 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 14:55:46 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,12 @@ void	ft_background(t_game *game)
 
 int	render(t_game *game)
 {
-	handle_input(game);
+	double	move_x;
+	double	move_y;
+
+	move_x = 0;
+	move_y = 0;
+	handle_input(game, move_x, move_y);
 	ft_new_image(game);
 	ft_background(game);
 	raycaster(game);

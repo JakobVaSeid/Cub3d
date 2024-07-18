@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 17:33:36 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 14:51:58 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ int		len_until_sc(char *str, char c);
 char	*norm_line(char *str);
 void	norm_map(t_game *game);
 bool	is_empty(char *str);
+void	concat_string(char **result, char **tmp2, char *tmp);
 
 //attribute_checker.c
 bool	right_path(char *path);
@@ -236,6 +237,6 @@ void	calculate_height(t_raycast *r);
 //movement.c
 int		key_press(int key, t_game *game);
 int		key_release(int key, t_game *game);
-void	handle_input(t_game *game);
+void	handle_input(t_game *g, double move_x, double move_y);
 
 #endif
