@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 17:01:08 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 10:11:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	check_row(t_game *game, char **map)
 	{
 		if (is_empty(map[i]))
 			return (false);
-		if (!only_walls(map[6]) && !only_walls(map[game->rows]))
+		if (!only_walls(map[6]) || !only_walls(map[game->rows - 1]))
 			return (false);
 		if (!only_allowed_chars(map[i]))
 			return (false);
