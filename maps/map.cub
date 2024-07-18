@@ -1,7 +1,7 @@
-NO ./images/NO.xpm
-SO ./images/SO.xpm
-WE ./images/DOOR.xpm
-EA ./images/EA.xpm
+NO ./images/fwechsle.xpm
+SO ./images/ggero.xpm
+WE ./images/fwechsle.xpm
+EA ./images/ggero.xpm
 
 F 255,0,255
 C 255,255,0
