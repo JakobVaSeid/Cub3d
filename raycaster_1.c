@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/17 17:08:55 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/18 14:52:58 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_line(t_game *game, int x, t_raycast *r)
 		if (r->side)
 			r->color = 13172854;
 		else
-			r->color = 16711885;//10027161;
+			r->color = 16711885;
 		my_mlx_pixel_put(game, x, y, r->color);
 		y++;
 	}

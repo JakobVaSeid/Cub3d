@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 19:46:15 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:51:58 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,6 @@ void	calculate_height(t_raycast *r);
 //movement.c
 int		key_press(int key, t_game *game);
 int		key_release(int key, t_game *game);
-void	handle_input(t_game *game);
+void	handle_input(t_game *g, double move_x, double move_y);
 
 #endif
