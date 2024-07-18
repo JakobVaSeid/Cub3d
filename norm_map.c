@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 19:46:35 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/18 10:46:10 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ char	*norm_line(char *str)
 	if (!str)
 		return (NULL);
 	result = ft_strdup("");
+	if (!result)
+		return (NULL);
 	tmp = NULL;
 	while (str[i])
 	{
 		skip_spaces(str, &i);
-		tmp = ft_substr(str, i, len_until_sc(str + i, ' '));
+		tmp = ft_substr(str, i, len_until_sc(str + i, ' ')); //protection
 		concat_string(&result, &tmp2, tmp);
 		if (is_dir(tmp) || is_fc(tmp))
 			concat_string(&result, &tmp2, " ");
@@ -81,11 +83,18 @@ void	norm_map(t_game *game)
 	i = 0;
 	j = 0;
 	new_map = malloc(sizeof(char *) * (game->rows + 1));
+	if (!new_map)
+		ft_error("Norm map failed!", game);
 	while (game->map[i])
 	{
 		if (!is_empty(game->map[i]))
 		{
 			new_map[j] = ft_strdup(game->map[i]);
+			if (!new_map[j])
+			{
+				free_map(new_map);
+				ft_error("Creating normed map failed!", game);
+			}
 			j++;
 		}
 		i++;

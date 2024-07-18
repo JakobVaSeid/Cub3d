@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 10:11:14 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:35:08 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@ void	get_rows(t_game *game)
 }
 
 //check for right fileextension
-bool	right_fileextension(char *file)
+bool	right_fileextension(char *file, char *end)
 {
 	char	*extension;
 
-	extension = strchr(file, '.');
-	if (!strcmp(extension, ".cub"))
+	if (ft_strlen(file) < 5)
+		return (false);
+	extension = ft_strrchr(file, '.');
+	if (!extension)
+		return (false);
+	if (!ft_strncmp(extension, end, 4) && ft_strlen(extension))
 		return (true);
 	else
 		return (false);
@@ -38,11 +42,10 @@ bool	right_fileextension(char *file)
 
 int	check_file(t_game *game, char *argv)
 {
-	if (!right_fileextension(argv))
+	if (!right_fileextension(argv, ".cub"))
 		ft_error("Wrong fileextension!", game);
 	if (!check_row(game, game->map))
 		ft_error("Map error!", game);
-	printf("Here\n");
 	if (!check_pos(game))
 		ft_error("Invalid map!", game);
 	norm_map(game);

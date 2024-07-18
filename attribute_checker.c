@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:43:05 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 16:49:10 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:36:36 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	check_type(t_game *game, char *str)
 	{
 		if (!valid_color(game, str))
 			return (false);
-		get_number(game, str);
+		if (!get_number(game, str))
+			return (false);
 	}
 	else if (is_dir(str))
 	{
@@ -61,6 +62,8 @@ bool	right_path(char *path)
 {
 	int	fd;
 
+	if (!right_fileextension(path, ".xpm"))
+		return (false);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (false);
