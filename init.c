@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:40:53 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 11:31:56 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 15:23:58 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	init_var(t_game *game)
 	game->mlx = NULL;
 	game->win = NULL;
 	game->img = NULL;
+	game->param.c = false;
+	game->param.f = false;
+	game->param.no = false;
+	game->param.we = false;
+	game->param.so = false;
+	game->param.ea = false;
 	game->player.x = 0;
 	game->player.y = 0;
 	game->player.dir_x = 0;
