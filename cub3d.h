@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 22:32:11 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 11:18:01 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,17 @@
 ///////////////////MACROS//////////////////
 //////////////////////////////////////////
 
-//remove later
-# define FCOLOR 65535
-//7047734
-# define CCOLOR 16776960
-// 13428223
-//
-
 # define WINDOW_WIDTH 1900
 # define WINDOW_HEIGHT 1000
 # define NUM_TEXTURES 4
 # define FOV 0.66
 # define MOVEMENT 0.03
 # define ROTATION 0.03
-# define FPS 60
 # define X 0
 # define Y 1
-# define HEIGHT 1.0
 # define FLOOR '0'
 # define WALL '1'
-# define DOOR '2'
+//# define DOOR '2'
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
@@ -100,7 +91,7 @@ typedef struct s_raycast
 	int				step_x; // -1 or 1
 	int				step_y;
 	int				hit;
-	int				side; // 0 = NS, 1 = EW
+	int				side; // 0 = X, 1 = Y
 	int				line_height;
 	int				line_start;
 	int				line_end;
