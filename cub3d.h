@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 11:43:58 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 11:50:29 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int		xpm_to_img(void *mlx, char *path, void **img);
 int		init_img(t_game *game);
 
 //check_file.c
-bool	right_fileextension(char *file);
+bool	right_fileextension(char *file, char *end);
 int		check_file(t_game *game, char *argv);
 void	get_rows(t_game *game);
 
@@ -183,7 +183,7 @@ bool	check_attributes(t_game *game);
 int		check_type(t_game *game, char *str);
 
 //color_calc.c
-void	get_number(t_game *game, char *str);
+bool	get_number(t_game *game, char *str);
 int		rgb_to_hex(int r, int g, int b);
 int		hex_to_dec(int hex);
 

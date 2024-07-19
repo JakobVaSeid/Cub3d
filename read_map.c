@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:29:22 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/05 11:35:58 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:30:44 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	init_map(t_game *game, char *argv)
 {
 	char	*map_temp;
 
-	if (right_fileextension(argv))
+	if (right_fileextension(argv, ".cub"))
 	{
 		game->fd = open(argv, O_RDONLY);
 		if (game->fd < 0)
