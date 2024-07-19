@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 16:17:09 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:45:27 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ bool	check_texture(t_game *game, char *str)
 	}
 	if (!path)
 		path = ft_substr(str, i, ft_strlen(str + i));
+	if (!path || !dir)
+		return (false);
 	if (!valid_texture(game, path, dir))
 	{
 		free(dir);
@@ -105,6 +107,8 @@ bool	valid_color(t_game *game, char *str)
 			return (false);
 		len = len_until_sc(str + i, ',');
 		number = ft_substr(str, i, len);
+		if (!number)
+			return (false);
 		if (str[i + len] == ',')
 			i += len + 1;
 		else

@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:38:42 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/18 22:26:30 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 14:29:37 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	render(t_game *game)
 	move_y = 0;
 	handle_input(game, move_x, move_y);
 	if (!ft_new_image(game))
-		free_exit(game);
+		ft_error("Failed to render new image", game);
 	ft_background(game);
 	raycaster(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

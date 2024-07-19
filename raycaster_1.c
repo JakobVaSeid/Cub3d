@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:59:43 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/18 22:30:40 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 14:28:17 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	determine_texture(t_game *game, t_raycast *r)
 				&r->texture->bits_per_pixel, &r->texture->line_length, \
 				&r->texture->endian);
 	if (!r->texture->addr)
-		free_exit(game);
+		ft_error("Failed to get texture address", game);
 }
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, unsigned int color)
