@@ -6,34 +6,56 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 14:45:27 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 16:22:38 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_dir(char *str)
+bool	is_dir(t_game *game, char *str)
 {
-	int	len;
-
-	len = len_until_sc(str, ' ');
-	if (len != 2)
+	if (len_until_sc(str, ' ') != 2)
 		return (false);
-	if (!ft_strncmp(str, "NO", 2) || !ft_strncmp(str, "SO", 2) \
-			|| !ft_strncmp(str, "WE", 2) || !ft_strncmp(str, "EA", 2))
+	if (!ft_strncmp(str, "NO", 2))
+	{
+		game->param.no = true;
 		return (true);
+	}
+	else if (!ft_strncmp(str, "WE", 2))
+	{
+		game->param.we = true;
+		return (true);
+	}
+	else if (!ft_strncmp(str, "SO", 2))
+	{
+		game->param.so = true;
+		return (true);
+	}
+	else if (!ft_strncmp(str, "EA", 2))
+	{
+		game->param.ea = true;
+		return (true);
+	}
 	return (false);
 }
 
-bool	is_fc(char *str)
+bool	is_fc(t_game *game, char *str)
 {
 	int	len;
 
 	len = len_until_sc(str, ' ');
 	if (len != 1)
 		return (false);
-	if (ft_strchr(str, 'F') || ft_strchr(str, 'C'))
+	if (ft_strchr(str, 'F'))
+	{
+		game->param.f = true;
 		return (true);
+	}
+	else if (ft_strchr(str, 'C'))
+	{
+		game->param.c = true;
+		return (true);
+	}
 	return (false);
 }
 

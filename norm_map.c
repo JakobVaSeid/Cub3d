@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 10:46:10 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:10:50 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	len_until_sc(char *str, char c)
 	return (i);
 }
 
-char	*norm_line(char *str)
+char	*norm_line(t_game *game, char *str)
 {
 	int		i;
 	char	*result;
@@ -41,7 +41,7 @@ char	*norm_line(char *str)
 		skip_spaces(str, &i);
 		tmp = ft_substr(str, i, len_until_sc(str + i, ' ')); //protection
 		concat_string(&result, &tmp2, tmp);
-		if (is_dir(tmp) || is_fc(tmp))
+		if (is_dir(game, tmp) || is_fc(game, tmp))
 			concat_string(&result, &tmp2, " ");
 		i += len_until_sc(str + i, ' ');
 		skip_spaces(str, &i);

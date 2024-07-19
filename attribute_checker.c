@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:43:05 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 14:36:36 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:25:59 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,30 @@ int	check_type(t_game *game, char *str)
 	len = len_until_sc(str, ' ');
 	if (len > 2)
 		return (false);
-	if (is_fc(str))
+	if (is_fc(game, str))
 	{
 		if (!valid_color(game, str))
 			return (false);
 		if (!get_number(game, str))
 			return (false);
 	}
-	else if (is_dir(str))
+	else if (is_dir(game, str))
 	{
 		if (!check_texture(game, str))
 			return (false);
 	}
+	return (true);
+}
+
+bool	correct_params(t_game *game)
+{
+	if (!game->param.c || !game->param.f)
+		return (false);
+	if (!game->param.ea || !game->param.no || !game->param.we \
+		|| !game->param.so)
+		return (false);
+	if (game->map_param != 6)
+		return (false);
 	return (true);
 }
 
@@ -43,7 +55,7 @@ bool	check_attributes(t_game *game)
 	norm_input = NULL;
 	while (i < 6)
 	{
-		norm_input = norm_line(game->map[i]);
+		norm_input = norm_line(game, game->map[i]);
 		if (!check_type(game, norm_input))
 		{
 			free(norm_input);
@@ -52,7 +64,7 @@ bool	check_attributes(t_game *game)
 		free(norm_input);
 		i++;
 	}
-	if (game->map_param != 6)
+	if (!correct_params(game))
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 11:50:23 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:28:16 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	check_file(t_game *game, char *argv)
 		ft_error("Wrong player amount!", game);
 	if (!check_attributes(game))
 		ft_error("Wrong map params", game);
-	//wo anders sinnvoller?
 	game->map[(int)game->player.y][(int)game->player.x] = '0';
 	return (0);
 }

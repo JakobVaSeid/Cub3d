@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 11:50:29 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:58:27 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,16 @@ typedef struct s_player
 	double	old_plane_x;
 }	t_player;
 
+typedef struct s_param
+{
+	bool	f;
+	bool	c;
+	bool	no;
+	bool	we;
+	bool	ea;
+	bool	so;
+}	t_param;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -129,11 +139,13 @@ typedef struct s_game
 	int				c_color;	
 	t_player		player;
 	t_raycast		raycast;
+	t_param			param;
 	double			move_speed;
 	double			rot_speed;
 	int				fd;
 	int				rows;
 	char			**map;
+	bool			m_start;
 	int				player_amount;
 	int				key_state[KEY_NUMS];
 }	t_game;
@@ -166,13 +178,13 @@ bool	check_pos(t_game *game);
 //map_utils_check.c
 bool	check_texture(t_game *game, char *str);
 bool	valid_texture(t_game *game, char *path, char *dir);
-bool	is_dir(char *str);
-bool	is_fc(char *str);
+bool	is_dir(t_game *game, char *str);
+bool	is_fc(t_game *game, char *str);
 bool	valid_color(t_game *game, char *str);
 
 //norm_map.c
 int		len_until_sc(char *str, char c);
-char	*norm_line(char *str);
+char	*norm_line(t_game *game, char *str);
 void	norm_map(t_game *game);
 bool	is_empty(char *str);
 void	concat_string(char **result, char **tmp2, char *tmp);
