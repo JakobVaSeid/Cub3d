@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:43:05 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 16:33:54 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 19:27:23 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ bool	right_path(char *path)
 		return (false);
 	else
 	{
-		close(fd);
+		if (close(fd) == -1)
+			return (false);
 		return (true);
 	}
 }
