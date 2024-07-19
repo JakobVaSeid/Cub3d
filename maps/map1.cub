@@ -3,8 +3,8 @@ WE ./images/WE200.xpm
 SO ./images/SO200.xpm
 EA ./images/EA200.xpm
 
-F 41,78,12
-C 23,128,0
+F 150,78,12
+C 0,128,250
 
 
 

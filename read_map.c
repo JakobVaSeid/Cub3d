@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:29:22 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 15:28:03 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:11:20 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ void	single_free(char *s1, t_game *game)
 	ft_error("Invalid map", game);
 }
 
+void handle_nl_in_map(t_game *game, char *s1, char *s2, bool *ms)
+{
+	if (only_walls(s2) && !*ms)
+		*ms = true;
+	if (s2 && s2[0] == '\n' && *ms)
+		double_free(s2, s1, game->fd, game);
+}
+
 char	*get_map_temp(t_game *game, char *map_temp, int fd)
 {
 	char	*line_temp;
@@ -54,10 +62,7 @@ char	*get_map_temp(t_game *game, char *map_temp, int fd)
 		line_temp = get_next_line(fd);
 		if (!line_temp)
 			single_free(map_temp, game);
-		if (only_walls(line_temp) && !map_start)
-			map_start = true;
-		if (line_temp && line_temp[0] == '\n' && map_start)
-			double_free(line_temp, map_temp, fd, game);
+		handle_nl_in_map(game, map_temp, line_temp, &map_start);
 		tmp = ft_strjoin(map_temp, line_temp);
 		if (!tmp)
 			double_free(map_temp, line_temp, fd, game);

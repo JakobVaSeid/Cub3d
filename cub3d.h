@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 15:18:43 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:58:27 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct s_game
 	int				fd;
 	int				rows;
 	char			**map;
+	bool			m_start;
 	int				player_amount;
 	int				key_state[KEY_NUMS];
 }	t_game;
