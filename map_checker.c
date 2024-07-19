@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 17:01:08 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 11:45:47 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ bool	check_pos(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if (strchr("0NSWE", game->map[y][x]))
+			if (ft_strchr("0NSWE", game->map[y][x]))
 			{
 				if (ft_strchr("NSWE", game->map[y][x]))
 				{

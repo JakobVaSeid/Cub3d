@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:40:53 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 21:26:43 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 11:31:56 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_var(t_game *game)
 	game->player.plane_y = 0;
 	game->move_speed = MOVEMENT;
 	game->rot_speed = ROTATION;
-	memset(game->key_state, 0, sizeof(game->key_state));
+	ft_memset(game->key_state, 0, sizeof(game->key_state));
 	init_texture(game);
 }
 

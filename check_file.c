@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/17 13:32:05 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 11:44:08 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ bool	right_fileextension(char *file)
 {
 	char	*extension;
 
-	extension = strchr(file, '.');
-	if (!strcmp(extension, ".cub"))
+	extension = ft_strchr(file, '.');
+	if (!ft_strcmp(extension, ".cub"))
 		return (true);
 	else
 		return (false);

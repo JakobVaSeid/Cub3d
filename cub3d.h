@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 11:18:01 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 11:43:58 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define Y 1
 # define FLOOR '0'
 # define WALL '1'
-//# define DOOR '2'
+# define DOOR '2'
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
