@@ -1,7 +1,7 @@
-NO ./images/NO200.xpm
-SO ./images/SO200.xpm
-WE ./images/WE200.xpm
-EA ./images/EA200.xpm
+NO ./images/N.xpm
+SO ./images/W.xpm
+WE ./images/S.xpm
+EA ./images/E.xpm
 
 C 255,255,0
 F 255,111,255

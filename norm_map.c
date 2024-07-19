@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 15:10:50 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:59:37 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ char	*norm_line(t_game *game, char *str)
 	while (str[i])
 	{
 		skip_spaces(str, &i);
-		tmp = ft_substr(str, i, len_until_sc(str + i, ' ')); //protection
+		tmp = ft_substr(str, i, len_until_sc(str + i, ' '));
+		if (!tmp)
+			return (free(result), NULL);
 		concat_string(&result, &tmp2, tmp);
 		if (is_dir(game, tmp) || is_fc(game, tmp))
 			concat_string(&result, &tmp2, " ");
@@ -54,8 +56,12 @@ void	concat_string(char **result, char **tmp2, char *tmp)
 {
 	*tmp2 = ft_strdup(*result);
 	free(*result);
+	if(!*tmp2)
+		ft_error("Malloc fail!", NULL);
 	*result = ft_strjoin(*tmp2, tmp);
 	free(*tmp2);
+	if(!*result)
+		ft_error("Malloc fail!", NULL);
 }
 
 //delete lines with only spaces

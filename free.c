@@ -6,7 +6,7 @@
 /*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:26 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 21:29:57 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/19 16:43:20 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	free_exit(t_game *game)
 
 void	free_all(t_game *game)
 {
+	if (!game)
+		return ;
 	if (game->map)
 		free_map(game->map);
 	destroy_mlx(game);
