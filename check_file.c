@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:54 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/18 14:35:08 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:35:03 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,24 @@ void	get_rows(t_game *game)
 }
 
 //check for right fileextension
-bool	right_fileextension(char *file, char *end)
+bool	right_fileextension(char *path, char *end)
 {
 	char	*extension;
+	char	*file;
 
-	if (ft_strlen(file) < 5)
+	file = NULL;
+	if (ft_strchr(path, '/'))
+	{
+		file = ft_strrchr(path, '/');
+		if (!file)
+			return (false);
+		file++;
+	}
+	else
+		file = path;
+	if (file[0] == '.')
 		return (false);
-	extension = ft_strrchr(file, '.');
+	extension = ft_strrchr(path, '.');
 	if (!extension)
 		return (false);
 	if (!ft_strncmp(extension, end, 4) && ft_strlen(extension))
