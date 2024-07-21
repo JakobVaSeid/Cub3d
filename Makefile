@@ -4,7 +4,6 @@ SOURCES =	cub3d.c \
 			init_game.c \
 			init.c \
 			movement.c \
-			validate.c \
 			free.c \
 			map_checker.c \
 			read_map.c \

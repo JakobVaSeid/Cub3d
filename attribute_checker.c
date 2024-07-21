@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   attribute_checker.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:43:05 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 19:27:23 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:33:09 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ bool	check_attributes(t_game *game)
 	norm_input = NULL;
 	while (i < 6)
 	{
+		if (!game->map[i])
+			ft_error("Map is missing!", game);
 		norm_input = norm_line(game, game->map[i]);
-		if(!norm_input)
+		if (!norm_input)
 			ft_error("Malloc fail!", game);
 		if (!check_type(game, norm_input))
 		{

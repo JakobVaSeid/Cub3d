@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:36:54 by caigner           #+#    #+#             */
-/*   Updated: 2024/07/18 16:08:22 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:05:33 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	handle_nl_in_map(t_game *game, char *s1, char *s2, bool *ms)
+{
+	if (only_walls(s2) && !*ms)
+		*ms = true;
+	if (s2 && s2[0] == '\n' && *ms)
+		double_free(s2, s1, game->fd, game);
+}
 
 void	add_plane_and_dir_vector(t_game *game, char c)
 {
@@ -60,6 +68,8 @@ void	ft_texture_to_mlx(t_game *game)
 		game->texture[i].img = mlx_xpm_file_to_image(game->mlx, \
 				game->texture[i].path, &game->texture[i].width, \
 				&game->texture[i].height);
+		if (!game->texture[i].img)
+			ft_error("mlx_xpm_file_to_image failed", game);
 		i++;
 	}
 }

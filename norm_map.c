@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:23:09 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 17:59:37 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:34:05 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int	len_until_sc(char *str, char c)
 	return (i);
 }
 
+void	helper(char **tmp, char **result, char **tmp2, t_game *game)
+{
+	free(*tmp);
+	*tmp = NULL;
+	concat_string(result, tmp2, " ", game);
+}
+
 char	*norm_line(t_game *game, char *str)
 {
 	int		i;
@@ -29,54 +36,46 @@ char	*norm_line(t_game *game, char *str)
 	char	*tmp;
 	char	*tmp2;
 
+	tmp2 = NULL;
 	i = 0;
-	if (!str)
-		return (NULL);
 	result = ft_strdup("");
 	if (!result)
 		return (NULL);
-	tmp = NULL;
 	while (str[i])
 	{
 		skip_spaces(str, &i);
 		tmp = ft_substr(str, i, len_until_sc(str + i, ' '));
 		if (!tmp)
 			return (free(result), NULL);
-		concat_string(&result, &tmp2, tmp);
+		concat_string(&result, &tmp2, tmp, game);
 		if (is_dir(game, tmp) || is_fc(game, tmp))
-			concat_string(&result, &tmp2, " ");
+			helper(&tmp, &result, &tmp2, game);
 		i += len_until_sc(str + i, ' ');
 		skip_spaces(str, &i);
-		free(tmp);
+		if (tmp)
+			free(tmp);
 	}
 	return (result);
 }
 
-void	concat_string(char **result, char **tmp2, char *tmp)
+void	concat_string(char **result, char **tmp2, char *tmp, t_game *game)
 {
 	*tmp2 = ft_strdup(*result);
 	free(*result);
-	if(!*tmp2)
-		ft_error("Malloc fail!", NULL);
+	if (!*tmp2)
+	{
+		if (ft_strcmp(tmp, " "))
+			free(tmp);
+		ft_error("Malloc fail!", game);
+	}
 	*result = ft_strjoin(*tmp2, tmp);
 	free(*tmp2);
-	if(!*result)
-		ft_error("Malloc fail!", NULL);
-}
-
-//delete lines with only spaces
-bool	is_empty(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (!*result)
 	{
-		if (str[i] != ' ')
-			return (false);
-		i++;
+		if (ft_strcmp(tmp, " "))
+			free(tmp);
+		ft_error("Malloc fail!", game);
 	}
-	return (true);
 }
 
 //delete empty lines
@@ -97,10 +96,7 @@ void	norm_map(t_game *game)
 		{
 			new_map[j] = ft_strdup(game->map[i]);
 			if (!new_map[j])
-			{
-				free_map(new_map);
-				ft_error("Creating normed map failed!", game);
-			}
+				free_norm_map(game, new_map);
 			j++;
 		}
 		i++;

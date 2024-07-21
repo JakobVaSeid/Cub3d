@@ -6,13 +6,13 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:04:18 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 10:57:47 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/21 13:41:09 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	trible_free(char *s1, char *s2, char *s3)
+void	triple_free(char *s1, char *s2, char *s3)
 {
 	if (s1)
 		free(s1);
@@ -41,7 +41,7 @@ bool	get_number(t_game *game, char *str)
 		game->f_color = hex_to_dec(hex);
 	else if (str[0] == 'C')
 		game->c_color = hex;
-	trible_free(num[0], num[1], num[2]);
+	triple_free(num[0], num[1], num[2]);
 	free(num);
 	return (true);
 }

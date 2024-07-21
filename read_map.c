@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:29:22 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 16:11:20 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:02:27 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ void	single_free(char *s1, t_game *game)
 {
 	free(s1);
 	ft_error("Invalid map", game);
-}
-
-void handle_nl_in_map(t_game *game, char *s1, char *s2, bool *ms)
-{
-	if (only_walls(s2) && !*ms)
-		*ms = true;
-	if (s2 && s2[0] == '\n' && *ms)
-		double_free(s2, s1, game->fd, game);
 }
 
 char	*get_map_temp(t_game *game, char *map_temp, int fd)

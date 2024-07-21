@@ -6,7 +6,7 @@
 /*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:24:55 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 15:58:27 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:34:44 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ int		len_until_sc(char *str, char c);
 char	*norm_line(t_game *game, char *str);
 void	norm_map(t_game *game);
 bool	is_empty(char *str);
-void	concat_string(char **result, char **tmp2, char *tmp);
+void	concat_string(char **result, char **tmp2, char *tmp, t_game *game);
 
 //attribute_checker.c
 bool	right_path(char *path);
@@ -195,6 +195,7 @@ bool	check_attributes(t_game *game);
 int		check_type(t_game *game, char *str);
 
 //color_calc.c
+void	triple_free(char *s1, char *s2, char *s3);
 bool	get_number(t_game *game, char *str);
 int		rgb_to_hex(int r, int g, int b);
 int		hex_to_dec(int hex);
@@ -217,12 +218,15 @@ void	free_all(t_game *game);
 int		print_td_array(char **str);
 bool	skip_spaces(char *str, int *j);
 void	count_player(t_game *game, char *str);
+bool	is_empty(char *str);
+void	free_norm_map(t_game *game, char **map);
 
 //utils_2.c
 void	add_plane_and_dir_vector(t_game *game, char c);
 int		key_press(int key, t_game *game);
 int		key_release(int key, t_game *game);
 void	ft_texture_to_mlx(t_game *game);
+void	handle_nl_in_map(t_game *game, char *s1, char *s2, bool *ms);
 
 //render.c
 bool	ft_new_image(t_game *game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:11:01 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 16:22:38 by caigner          ###   ########.fr       */
+/*   Updated: 2024/07/21 15:10:58 by jseidere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,47 +71,48 @@ bool	check_texture(t_game *game, char *str)
 	if (!dir)
 	{
 		dir = ft_substr(str, i, 2);
+		if (!dir)
+			return (false);
 		i += 3;
 	}
 	if (!path)
-		path = ft_substr(str, i, ft_strlen(str + i));
-	if (!path || !dir)
-		return (false);
-	if (!valid_texture(game, path, dir))
 	{
-		free(dir);
-		free(path);
-		return (false);
+		path = ft_substr(str, i, ft_strlen(str + i));
+		if (!path)
+			return (free(dir), false);
 	}
-	free(dir);
-	free(path);
-	return (true);
+	if (!valid_texture(game, path, dir))
+		return (free(dir), free(path), false);
+	return (free(dir), free(path), true);
 }
 
 bool	valid_texture(t_game *game, char *path, char *dir)
 {
-	game->map_param++;
 	if (!ft_strncmp(dir, "NO", 2) && right_path(path))
 	{
 		game->texture[NORTH].path = ft_strdup(path);
-		return (true);
+		if (game->texture[NORTH].path)
+			return (game->map_param++, true);
 	}
 	else if (!ft_strncmp(dir, "SO", 2) && right_path(path))
 	{
 		game->texture[SOUTH].path = ft_strdup(path);
-		return (true);
+		if (game->texture[SOUTH].path)
+			return (game->map_param++, true);
 	}
 	else if (!ft_strncmp(dir, "WE", 2) && right_path(path))
 	{
 		game->texture[WEST].path = ft_strdup(path);
-		return (true);
+		if (game->texture[WEST].path)
+			return (game->map_param++, true);
 	}
 	else if (!ft_strncmp(dir, "EA", 2) && right_path(path))
 	{
 		game->texture[EAST].path = ft_strdup(path);
-		return (true);
+		if (game->texture[EAST].path)
+			return (game->map_param++, true);
 	}
-	return (false);
+	return (game->map_param++, false);
 }
 
 bool	valid_color(t_game *game, char *str)
@@ -140,6 +141,5 @@ bool	valid_color(t_game *game, char *str)
 		if (num > 255 || num < 0)
 			return (false);
 	}
-	game->map_param++;
-	return (true);
+	return (game->map_param++, true);
 }
