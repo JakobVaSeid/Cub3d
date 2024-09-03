@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jseidere <jseidere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caigner <caigner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:32 by jseidere          #+#    #+#             */
-/*   Updated: 2024/07/19 15:46:56 by jseidere         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:39:24 by caigner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,15 @@ bool	check_row(t_game *game, char **map)
 
 bool	check_surr(t_game *game, int y, int x)
 {
-	if (game->map[y + 1][x] == ' ' || !game->map[y + 1][x])
+	if ((int)ft_strlen(game->map[y + 1]) < x || !game->map[y + 1][x]
+		|| game->map[y + 1][x] == ' ')
 		return (false);
-	if (game->map[y - 1][x] == ' ' || !game->map[y - 1][x])
+	if ((int)ft_strlen(game->map[y - 1]) < x || !game->map[y - 1][x]
+		|| game->map[y - 1][x] == ' ')
 		return (false);
-	if (game->map[y][x + 1] == ' ' || !game->map[y][x + 1])
+	if (!game->map[y][x + 1] || game->map[y][x + 1] == ' ')
 		return (false);
-	if (game->map[y][x - 1] == ' ' || !game->map[y][x - 1])
+	if (!game->map[y][x - 1] || game->map[y][x - 1] == ' ')
 		return (false);
 	return (true);
 }
